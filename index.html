@@ -8,39 +8,37 @@
 <meta property="og:title" content="L'Expert IA">
 <meta property="og:description" content="Monétise l'intelligence artificielle. Avant tout le monde.">
 <meta property="og:type" content="website">
+<meta name="theme-color" content="#0a0a0a">
 <style>
   *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 
   :root{
-    --bg:#f8f7f4;
-    --bg-glass:rgba(255,255,255,.72);
-    --text:#1a1a1a;
-    --muted:#6b6b6b;
-    --border:#e2e0db;
-    --accent:#1a1a1a;
+    --bg:#0a0a0a;
+    --surface:rgba(255,255,255,.05);
+    --surface-hover:rgba(255,255,255,.08);
+    --text:#f0f0f0;
+    --muted:rgba(255,255,255,.45);
+    --border:rgba(255,255,255,.08);
     --telegram:#2AABEE;
-    --radius:14px;
-    --shadow-sm:0 1px 2px rgba(0,0,0,.04);
-    --shadow-md:0 4px 16px rgba(0,0,0,.06);
-    --shadow-lg:0 8px 32px rgba(0,0,0,.10);
+    --glow:rgba(42,171,238,.15);
+    --radius:16px;
     --transition:cubic-bezier(.4,0,.2,1);
   }
 
   body{
-    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',Helvetica,Arial,sans-serif;
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
     background:var(--bg);
     color:var(--text);
     min-height:100dvh;
     display:flex;
     justify-content:center;
     align-items:center;
-    padding:40px 16px;
+    padding:48px 20px;
     -webkit-font-smoothing:antialiased;
     overflow-x:hidden;
-    position:relative;
   }
 
-  /* ---- 3D CANVAS BG ---- */
+  /* ---- 3D CANVAS ---- */
   #bgCanvas{
     position:fixed;
     inset:0;
@@ -48,22 +46,44 @@
     pointer-events:none;
   }
 
+  /* ---- AMBIENT GRADIENT ORB ---- */
+  .orb{
+    position:fixed;
+    width:600px;
+    height:600px;
+    border-radius:50%;
+    filter:blur(120px);
+    opacity:.12;
+    pointer-events:none;
+    z-index:0;
+  }
+  .orb-1{
+    top:-200px;
+    right:-150px;
+    background:var(--telegram);
+  }
+  .orb-2{
+    bottom:-250px;
+    left:-200px;
+    background:#8b5cf6;
+  }
+
   .container{
     position:relative;
     z-index:1;
     width:100%;
-    max-width:440px;
+    max-width:400px;
     display:flex;
     flex-direction:column;
     align-items:center;
-    gap:28px;
+    gap:24px;
   }
 
-  /* ---- STAGGER ENTRANCE ---- */
+  /* ---- REVEAL ---- */
   .reveal{
     opacity:0;
-    transform:translateY(18px);
-    transition:opacity .6s var(--transition), transform .6s var(--transition);
+    transform:translateY(16px);
+    transition:opacity .7s var(--transition), transform .7s var(--transition);
   }
   .reveal.visible{
     opacity:1;
@@ -73,80 +93,85 @@
   /* ---- AVATAR ---- */
   .avatar-wrapper{
     position:relative;
-    width:100px;
-    height:100px;
+    width:88px;
+    height:88px;
   }
 
   .avatar{
-    width:100px;
-    height:100px;
+    width:88px;
+    height:88px;
     border-radius:50%;
-    background:linear-gradient(135deg,#e0ddd7 0%,#d0cdc6 100%);
+    background:linear-gradient(135deg,#1a1a2e,#16213e);
     display:flex;
     align-items:center;
     justify-content:center;
     overflow:hidden;
-    border:3px solid #fff;
-    box-shadow:var(--shadow-md);
+    border:2px solid rgba(255,255,255,.1);
+    box-shadow:0 0 40px var(--glow), 0 8px 32px rgba(0,0,0,.4);
+    position:relative;
+    z-index:1;
   }
 
-  .avatar svg{
-    width:48px;
-    height:48px;
-    opacity:.35;
-  }
-
-  .avatar-pulse{
+  .avatar-glow{
     position:absolute;
-    inset:-4px;
+    inset:-8px;
     border-radius:50%;
-    border:2px solid var(--telegram);
-    opacity:0;
-    animation:pulse-ring 2.8s var(--transition) infinite;
+    background:conic-gradient(from 0deg, var(--telegram), #8b5cf6, var(--telegram));
+    opacity:.25;
+    animation:glow-spin 6s linear infinite;
+    z-index:0;
   }
 
-  @keyframes pulse-ring{
-    0%{transform:scale(.95);opacity:.6}
-    70%{transform:scale(1.15);opacity:0}
-    100%{transform:scale(1.15);opacity:0}
+  @keyframes glow-spin{
+    to{transform:rotate(360deg)}
+  }
+
+  .avatar-icon{
+    width:36px;
+    height:36px;
+    color:var(--telegram);
+    opacity:.9;
   }
 
   /* ---- IDENTITY ---- */
   .identity{text-align:center}
 
   .name{
-    font-size:1.5rem;
+    font-size:1.625rem;
     font-weight:700;
-    letter-spacing:-.02em;
-    line-height:1.2;
+    letter-spacing:-.03em;
+    line-height:1.15;
+    background:linear-gradient(135deg, #fff 0%, rgba(255,255,255,.7) 100%);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
   }
 
   .tagline{
-    margin-top:6px;
-    font-size:.875rem;
+    margin-top:8px;
+    font-size:.8125rem;
     color:var(--muted);
     font-weight:400;
     letter-spacing:.01em;
+    line-height:1.5;
   }
 
-  /* ---- SOCIAL PROOF BAR ---- */
+  /* ---- PROOF ---- */
   .proof-bar{
     display:flex;
-    gap:0;
     width:100%;
-    background:var(--bg-glass);
-    backdrop-filter:blur(16px);
-    -webkit-backdrop-filter:blur(16px);
+    background:var(--surface);
     border:1px solid var(--border);
     border-radius:12px;
     overflow:hidden;
-    box-shadow:var(--shadow-sm);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
   }
 
   .proof-item{
     flex:1;
     text-align:center;
-    padding:14px 8px;
+    padding:14px 6px;
     position:relative;
   }
 
@@ -154,139 +179,27 @@
     content:'';
     position:absolute;
     left:0;
-    top:20%;
-    height:60%;
+    top:22%;
+    height:56%;
     width:1px;
     background:var(--border);
   }
 
   .proof-number{
-    font-size:1.25rem;
+    font-size:1.125rem;
     font-weight:700;
     letter-spacing:-.02em;
-    color:var(--text);
+    color:#fff;
     line-height:1;
   }
 
   .proof-label{
-    font-size:.625rem;
+    font-size:.5625rem;
     color:var(--muted);
     text-transform:uppercase;
-    letter-spacing:.06em;
+    letter-spacing:.08em;
     margin-top:4px;
     font-weight:500;
-  }
-
-  /* ---- SERVICES ---- */
-  .services{
-    width:100%;
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-  }
-
-  .services-title{
-    font-size:.6875rem;
-    font-weight:600;
-    text-transform:uppercase;
-    letter-spacing:.1em;
-    color:var(--muted);
-    text-align:center;
-    margin-bottom:2px;
-  }
-
-  .service-card{
-    display:flex;
-    align-items:center;
-    gap:14px;
-    width:100%;
-    padding:16px 18px;
-    background:var(--bg-glass);
-    backdrop-filter:blur(12px);
-    -webkit-backdrop-filter:blur(12px);
-    border:1px solid var(--border);
-    border-radius:var(--radius);
-    transition:all .3s var(--transition);
-    cursor:default;
-    box-shadow:var(--shadow-sm);
-  }
-
-  .service-card:hover{
-    transform:translateY(-2px);
-    box-shadow:var(--shadow-md);
-    border-color:rgba(42,171,238,.25);
-  }
-
-  .service-icon{
-    width:40px;
-    height:40px;
-    border-radius:10px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    flex-shrink:0;
-  }
-
-  .service-icon svg{
-    width:20px;
-    height:20px;
-  }
-
-  .service-icon.formation{
-    background:linear-gradient(135deg,#dbeafe,#bfdbfe);
-    color:#2563eb;
-  }
-
-  .service-icon.automation{
-    background:linear-gradient(135deg,#d1fae5,#a7f3d0);
-    color:#059669;
-  }
-
-  .service-icon.consulting{
-    background:linear-gradient(135deg,#ede9fe,#ddd6fe);
-    color:#7c3aed;
-  }
-
-  .service-info{display:flex;flex-direction:column;gap:2px}
-
-  .service-name{
-    font-size:.875rem;
-    font-weight:600;
-    color:var(--text);
-  }
-
-  .service-desc{
-    font-size:.75rem;
-    color:var(--muted);
-    line-height:1.4;
-  }
-
-  .service-tag{
-    margin-left:auto;
-    font-size:.5625rem;
-    font-weight:600;
-    text-transform:uppercase;
-    letter-spacing:.06em;
-    padding:3px 7px;
-    border-radius:5px;
-    flex-shrink:0;
-  }
-
-  .service-tag.pop{
-    background:rgba(42,171,238,.1);
-    color:var(--telegram);
-  }
-
-  .service-tag.new{
-    background:rgba(5,150,105,.1);
-    color:#059669;
-  }
-
-  /* ---- DIVIDER ---- */
-  .divider{
-    width:40px;
-    height:1px;
-    background:var(--border);
   }
 
   /* ---- LINKS ---- */
@@ -294,10 +207,10 @@
     width:100%;
     display:flex;
     flex-direction:column;
-    gap:12px;
+    gap:10px;
   }
 
-  /* ---- BUTTON BASE ---- */
+  /* ---- BUTTON ---- */
   .link-btn{
     position:relative;
     display:flex;
@@ -305,45 +218,29 @@
     justify-content:center;
     gap:10px;
     width:100%;
-    padding:16px 20px;
-    border:1.5px solid var(--border);
+    padding:15px 20px;
+    border:1px solid var(--border);
     border-radius:var(--radius);
-    background:var(--bg-glass);
+    background:var(--surface);
     backdrop-filter:blur(12px);
     -webkit-backdrop-filter:blur(12px);
     color:var(--text);
-    font-size:.9375rem;
+    font-size:.875rem;
     font-weight:500;
     text-decoration:none;
     cursor:pointer;
-    transition:all .25s var(--transition);
-    box-shadow:var(--shadow-sm);
+    transition:all .3s var(--transition);
     overflow:hidden;
     user-select:none;
     -webkit-tap-highlight-color:transparent;
-  }
-
-  .link-btn::before{
-    content:'';
-    position:absolute;
-    inset:0;
-    background:var(--fill,var(--accent));
-    transform:scaleY(0);
-    transform-origin:bottom;
-    transition:transform .35s var(--transition);
-    border-radius:var(--radius);
-    z-index:0;
-  }
-
-  .link-btn:hover::before{
-    transform:scaleY(1);
+    font-family:inherit;
   }
 
   .link-btn:hover{
-    color:#fff;
-    border-color:transparent;
-    box-shadow:var(--shadow-lg);
+    background:var(--surface-hover);
+    border-color:rgba(255,255,255,.12);
     transform:translateY(-2px);
+    box-shadow:0 8px 24px rgba(0,0,0,.3);
   }
 
   .link-btn:active{
@@ -351,97 +248,90 @@
     transition:transform .1s;
   }
 
-  .link-btn svg,.link-btn span{
-    position:relative;
-    z-index:1;
-    transition:color .25s var(--transition);
-  }
-
   .link-btn .icon{
-    width:20px;
-    height:20px;
+    width:18px;
+    height:18px;
     flex-shrink:0;
   }
 
-  /* ---- TELEGRAM — DOMINANT ---- */
+  /* ---- TELEGRAM DOMINANT ---- */
   .link-btn.telegram{
-    --fill:#2AABEE;
     background:var(--telegram);
     color:#fff;
-    border-color:var(--telegram);
-    padding:20px 24px;
-    font-size:1.0625rem;
+    border:none;
+    padding:18px 24px;
+    font-size:1rem;
     font-weight:600;
-    box-shadow:0 4px 20px rgba(42,171,238,.25);
+    box-shadow:0 4px 24px rgba(42,171,238,.3), 0 0 60px rgba(42,171,238,.1);
     backdrop-filter:none;
-  }
-
-  .link-btn.telegram::before{
-    background:linear-gradient(180deg,#1e9ad9 0%,#1a8ac2 100%);
+    letter-spacing:-.01em;
   }
 
   .link-btn.telegram:hover{
-    box-shadow:0 8px 32px rgba(42,171,238,.35);
-    color:#fff;
+    background:#1da1d9;
+    box-shadow:0 8px 40px rgba(42,171,238,.4), 0 0 80px rgba(42,171,238,.15);
+    transform:translateY(-3px);
   }
 
   .link-btn.telegram .icon{
-    width:22px;
-    height:22px;
+    width:20px;
+    height:20px;
   }
 
-  .telegram-sub{
+  .telegram-hint{
     text-align:center;
     font-size:.6875rem;
     color:var(--muted);
-    margin-top:-6px;
-    opacity:.7;
+    margin-top:-4px;
     display:flex;
     align-items:center;
     justify-content:center;
-    gap:4px;
+    gap:5px;
   }
 
   .live-dot{
-    width:6px;
-    height:6px;
+    width:5px;
+    height:5px;
     background:#22c55e;
     border-radius:50%;
-    display:inline-block;
-    animation:blink 1.5s infinite;
+    animation:blink 1.8s ease infinite;
+    box-shadow:0 0 6px rgba(34,197,94,.5);
   }
 
   @keyframes blink{
     0%,100%{opacity:1}
-    50%{opacity:.3}
+    50%{opacity:.25}
   }
 
   /* ---- YOUTUBE ---- */
-  .link-btn.youtube{--fill:#FF0000}
-  .link-btn.youtube:hover{color:#fff}
+  .link-btn.youtube:hover{
+    border-color:rgba(255,0,0,.25);
+    box-shadow:0 8px 24px rgba(255,0,0,.1);
+  }
+
+  .link-btn.youtube .icon{color:#FF0000}
 
   /* ---- COMING SOON ---- */
   .link-btn.soon{
     cursor:default;
-    opacity:.55;
+    opacity:.4;
     border-style:dashed;
     backdrop-filter:none;
   }
 
-  .link-btn.soon::before{display:none}
   .link-btn.soon:hover{
     transform:none;
-    color:var(--text);
-    box-shadow:var(--shadow-sm);
+    background:var(--surface);
+    box-shadow:none;
     border-color:var(--border);
   }
 
   .badge{
-    font-size:.625rem;
+    font-size:.5625rem;
     font-weight:600;
     text-transform:uppercase;
     letter-spacing:.08em;
-    background:var(--bg);
+    background:rgba(255,255,255,.06);
     color:var(--muted);
     padding:3px 8px;
     border-radius:6px;
@@ -450,20 +340,20 @@
 
   .soon-sub{
     text-align:center;
-    font-size:.75rem;
+    font-size:.6875rem;
     color:var(--muted);
     font-style:italic;
-    margin-top:-6px;
-    opacity:.7;
+    margin-top:-4px;
+    opacity:.5;
   }
 
-  /* ---- MODAL OVERLAY ---- */
+  /* ---- MODAL ---- */
   .modal-overlay{
     position:fixed;
     inset:0;
-    background:rgba(26,26,26,.3);
-    backdrop-filter:blur(12px);
-    -webkit-backdrop-filter:blur(12px);
+    background:rgba(0,0,0,.6);
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
     display:flex;
     align-items:center;
     justify-content:center;
@@ -471,7 +361,7 @@
     z-index:100;
     opacity:0;
     visibility:hidden;
-    transition:all .3s var(--transition);
+    transition:all .35s var(--transition);
   }
 
   .modal-overlay.active{
@@ -480,14 +370,15 @@
   }
 
   .modal{
-    background:#fff;
-    border-radius:20px;
+    background:#141414;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:24px;
     padding:40px 32px 32px;
     width:100%;
     max-width:380px;
-    box-shadow:0 24px 64px rgba(0,0,0,.12);
-    transform:translateY(20px) scale(.96);
-    transition:transform .35s var(--transition);
+    box-shadow:0 24px 80px rgba(0,0,0,.5), 0 0 60px var(--glow);
+    transform:translateY(24px) scale(.95);
+    transition:transform .4s var(--transition);
     text-align:center;
     position:relative;
   }
@@ -503,40 +394,30 @@
     width:32px;
     height:32px;
     border:none;
-    background:transparent;
+    background:rgba(255,255,255,.05);
     cursor:pointer;
     color:var(--muted);
     display:flex;
     align-items:center;
     justify-content:center;
     border-radius:8px;
-    transition:background .2s;
+    transition:background .2s, color .2s;
   }
 
-  .modal-close:hover{background:var(--bg)}
+  .modal-close:hover{background:rgba(255,255,255,.1);color:#fff}
 
-  .modal-icon{
-    width:48px;
-    height:48px;
-    background:linear-gradient(135deg,rgba(42,171,238,.1),rgba(42,171,238,.2));
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    margin:0 auto 16px;
-  }
-
-  .modal-icon svg{
-    width:22px;
-    height:22px;
-    color:var(--telegram);
+  .modal-emoji{
+    font-size:2rem;
+    margin-bottom:12px;
+    display:block;
   }
 
   .modal-title{
-    font-size:1.375rem;
+    font-size:1.25rem;
     font-weight:700;
     letter-spacing:-.02em;
-    margin-bottom:8px;
+    margin-bottom:6px;
+    color:#fff;
   }
 
   .modal-desc{
@@ -549,28 +430,28 @@
   .modal-form{
     display:flex;
     flex-direction:column;
-    gap:12px;
+    gap:10px;
   }
 
   .modal-input{
     width:100%;
     padding:14px 16px;
-    border:1.5px solid var(--border);
+    border:1px solid rgba(255,255,255,.1);
     border-radius:12px;
-    font-size:.9375rem;
+    font-size:.875rem;
     font-family:inherit;
-    background:var(--bg);
-    color:var(--text);
+    background:rgba(255,255,255,.04);
+    color:#fff;
     outline:none;
     transition:border-color .2s,box-shadow .2s;
   }
 
   .modal-input:focus{
     border-color:var(--telegram);
-    box-shadow:0 0 0 3px rgba(42,171,238,.12);
+    box-shadow:0 0 0 3px rgba(42,171,238,.15);
   }
 
-  .modal-input::placeholder{color:#aaa}
+  .modal-input::placeholder{color:rgba(255,255,255,.25)}
 
   .modal-submit{
     width:100%;
@@ -579,35 +460,39 @@
     border-radius:12px;
     background:var(--telegram);
     color:#fff;
-    font-size:.9375rem;
+    font-size:.875rem;
     font-weight:600;
     font-family:inherit;
     cursor:pointer;
     transition:all .25s var(--transition);
-    box-shadow:0 2px 12px rgba(42,171,238,.2);
+    box-shadow:0 2px 16px rgba(42,171,238,.25);
   }
 
   .modal-submit:hover{
-    background:#1e9ad9;
-    box-shadow:0 4px 20px rgba(42,171,238,.35);
+    background:#1da1d9;
+    box-shadow:0 4px 24px rgba(42,171,238,.4);
     transform:translateY(-1px);
   }
 
-  .modal-submit:active{
-    transform:scale(.97);
-  }
+  .modal-submit:active{transform:scale(.97)}
 
   .modal-submit.success{
     background:#22c55e;
+    box-shadow:0 2px 16px rgba(34,197,94,.3);
     pointer-events:none;
+  }
+
+  .modal-submit.error{
+    background:#ef4444;
+    box-shadow:0 2px 16px rgba(239,68,68,.3);
   }
 
   .modal-bypass{
     margin-top:8px;
-    font-size:.75rem;
+    font-size:.6875rem;
     color:var(--muted);
     text-decoration:none;
-    opacity:.6;
+    opacity:.5;
     transition:opacity .2s;
     cursor:pointer;
     background:none;
@@ -615,25 +500,36 @@
     font-family:inherit;
   }
 
-  .modal-bypass:hover{
-    opacity:1;
-    text-decoration:underline;
+  .modal-bypass:hover{opacity:.9;text-decoration:underline}
+
+  .modal-count{
+    margin-top:14px;
+    font-size:.625rem;
+    color:var(--muted);
+    opacity:.5;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:4px;
   }
+
+  .modal-count svg{width:10px;height:10px;opacity:.5}
 
   /* ---- FOOTER ---- */
   .footer{
     text-align:center;
-    font-size:.6875rem;
+    font-size:.625rem;
     color:var(--muted);
-    opacity:.5;
+    opacity:.3;
     letter-spacing:.02em;
+    margin-top:8px;
   }
 
   /* ---- RIPPLE ---- */
   .ripple{
     position:absolute;
     border-radius:50%;
-    background:rgba(255,255,255,.3);
+    background:rgba(255,255,255,.12);
     transform:scale(0);
     animation:ripple-anim .5s ease-out forwards;
     pointer-events:none;
@@ -646,43 +542,57 @@
 
   /* ---- RESPONSIVE ---- */
   @media(min-width:480px){
-    .container{gap:32px}
-    .avatar-wrapper{width:110px;height:110px}
-    .avatar{width:110px;height:110px}
-    .name{font-size:1.625rem}
-    .proof-number{font-size:1.375rem}
+    .container{gap:28px}
+    .avatar-wrapper{width:96px;height:96px}
+    .avatar{width:96px;height:96px}
+    .name{font-size:1.75rem}
+  }
+
+  @media(max-width:380px){
+    .modal{padding:32px 20px 24px}
+    .link-btn.telegram{padding:16px 20px;font-size:.9375rem}
   }
 
   @media(prefers-reduced-motion:reduce){
     .reveal{transition:none;opacity:1;transform:none}
-    .avatar-pulse{animation:none}
+    .avatar-glow{animation:none}
     .live-dot{animation:none}
     #bgCanvas{display:none}
   }
 </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<!-- 3D PARTICLE BACKGROUND -->
 <canvas id="bgCanvas"></canvas>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
 
 <div class="container">
 
   <!-- AVATAR -->
   <div class="avatar-wrapper reveal">
-    <div class="avatar-pulse"></div>
+    <div class="avatar-glow"></div>
     <div class="avatar">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
+      <svg class="avatar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2a4 4 0 0 1 4 4v2a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"/>
+        <path d="M16 14H8a4 4 0 0 0-4 4v0a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v0a4 4 0 0 0-4-4z"/>
+        <circle cx="18" cy="5" r="2.5" fill="currentColor" stroke="none" opacity=".6"/>
+        <path d="M18 5l-2 2" opacity=".4"/>
+        <path d="M18 5l2 2" opacity=".4"/>
+      </svg>
     </div>
   </div>
 
   <!-- IDENTITY -->
   <div class="identity reveal">
     <h1 class="name">L'Expert IA</h1>
-    <p class="tagline">Monétise l'intelligence artificielle. Avant tout le monde.</p>
+    <p class="tagline">Monétise l'intelligence artificielle.<br>Avant tout le monde.</p>
   </div>
 
-  <!-- SOCIAL PROOF BAR -->
+  <!-- PROOF -->
   <div class="proof-bar reveal">
     <div class="proof-item">
       <div class="proof-number" data-target="2400">0</div>
@@ -698,54 +608,15 @@
     </div>
   </div>
 
-  <!-- SERVICES -->
-  <div class="services reveal">
-    <p class="services-title">Services</p>
-
-    <div class="service-card">
-      <div class="service-icon formation">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-      </div>
-      <div class="service-info">
-        <span class="service-name">Formation IA</span>
-        <span class="service-desc">Apprends à utiliser l'IA pour générer des revenus</span>
-      </div>
-      <span class="service-tag pop">Populaire</span>
-    </div>
-
-    <div class="service-card">
-      <div class="service-icon automation">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-      </div>
-      <div class="service-info">
-        <span class="service-name">Automatisation</span>
-        <span class="service-desc">Bots, workflows, agents IA clé en main</span>
-      </div>
-      <span class="service-tag new">Nouveau</span>
-    </div>
-
-    <div class="service-card">
-      <div class="service-icon consulting">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      </div>
-      <div class="service-info">
-        <span class="service-name">Consulting</span>
-        <span class="service-desc">Stratégie IA personnalisée pour ton business</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="divider reveal"></div>
-
   <!-- LINKS -->
   <div class="links reveal">
 
-    <!-- TELEGRAM — DOMINANT -->
+    <!-- TELEGRAM -->
     <button class="link-btn telegram" id="telegramBtn" type="button">
       <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
       <span>Rejoindre le Telegram</span>
     </button>
-    <p class="telegram-sub"><span class="live-dot"></span> Communauté active — accès gratuit</p>
+    <p class="telegram-hint"><span class="live-dot"></span> Communauté active — accès gratuit</p>
 
     <!-- YOUTUBE -->
     <a class="link-btn youtube" href="https://m.youtube.com/@AIGlobalFilms26" target="_blank" rel="noopener">
@@ -753,9 +624,9 @@
       <span>YouTube</span>
     </a>
 
-    <!-- SITE — COMING SOON -->
+    <!-- COMING SOON -->
     <div class="link-btn soon">
-      <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
       <span>Site web</span>
       <span class="badge">Coming soon</span>
     </div>
@@ -763,267 +634,256 @@
 
   </div>
 
-  <!-- FOOTER -->
   <p class="footer reveal">© 2026 L'Expert IA</p>
 
 </div>
 
-<!-- EMAIL MODAL -->
+<!-- MODAL -->
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal">
     <button class="modal-close" id="modalClose" type="button" aria-label="Fermer">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
-    <div class="modal-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-    </div>
+    <span class="modal-emoji">🔐</span>
     <h2 class="modal-title">Entre dans le cercle.</h2>
-    <p class="modal-desc">Laisse ton email pour recevoir les stratégies IA<br>avant qu'elles deviennent mainstream.</p>
+    <p class="modal-desc">Ton email pour recevoir les stratégies IA<br>avant qu'elles deviennent mainstream.</p>
     <form class="modal-form" id="emailForm">
       <input class="modal-input" type="email" id="emailInput" placeholder="ton@email.com" required autocomplete="email">
       <button class="modal-submit" type="submit" id="submitBtn">Accéder au Telegram →</button>
     </form>
     <button class="modal-bypass" id="bypassBtn" type="button">Accéder directement sans email</button>
+    <p class="modal-count" id="modalCount">
+      <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+      <span id="emailCountText">0 inscrits</span>
+    </p>
   </div>
 </div>
 
 <script>
 (function(){
-  /* ---- 3D PARTICLE MESH BACKGROUND ---- */
-  const canvas = document.getElementById('bgCanvas');
-  const ctx = canvas.getContext('2d');
-  let w, h, particles = [], mouse = {x:-1000, y:-1000};
-  const PARTICLE_COUNT = 45;
-  const CONNECT_DIST = 140;
-  const MOUSE_DIST = 180;
+  /* ==============================
+     CONFIG — Remplace avec tes IDs
+     ============================== */
+  var TELEGRAM_URL = 'https://t.me/lexpertIA';
+
+  // Formsubmit.co — remplace TON_EMAIL@gmail.com par ton email
+  // Premier envoi : tu recevras un email de confirmation, clique dessus une fois
+  var FORMSUBMIT_URL = 'https://formsubmit.co/ajax/TON_EMAIL@gmail.com';
+
+  /* ---- 3D PARTICLE MESH ---- */
+  var canvas = document.getElementById('bgCanvas');
+  var ctx = canvas.getContext('2d');
+  var w, h, particles = [], mouse = {x:-9999, y:-9999};
+  var PCOUNT = 50, CDIST = 130, MDIST = 200;
+  var dpr = Math.min(window.devicePixelRatio || 1, 2);
 
   function resize(){
-    w = canvas.width = window.innerWidth;
-    h = canvas.height = window.innerHeight;
+    w = window.innerWidth;
+    h = window.innerHeight;
+    canvas.width = w * dpr;
+    canvas.height = h * dpr;
+    canvas.style.width = w + 'px';
+    canvas.style.height = h + 'px';
+    ctx.setTransform(dpr,0,0,dpr,0,0);
   }
 
-  function createParticles(){
+  function initParticles(){
     particles = [];
-    for(let i = 0; i < PARTICLE_COUNT; i++){
+    for(var i = 0; i < PCOUNT; i++){
       particles.push({
-        x: Math.random() * w,
-        y: Math.random() * h,
-        vx: (Math.random() - .5) * .4,
-        vy: (Math.random() - .5) * .4,
-        r: Math.random() * 2 + 1
+        x: Math.random()*w, y: Math.random()*h,
+        vx:(Math.random()-.5)*.35, vy:(Math.random()-.5)*.35,
+        r: Math.random()*1.5+.5,
+        depth: Math.random()*.5+.5
       });
     }
   }
 
-  function drawParticles(){
-    ctx.clearRect(0, 0, w, h);
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    var i,j,p,dx,dy,d,a;
 
-    // Connections
-    for(let i = 0; i < particles.length; i++){
-      for(let j = i + 1; j < particles.length; j++){
-        const dx = particles[i].x - particles[j].x;
-        const dy = particles[i].y - particles[j].y;
-        const dist = Math.sqrt(dx*dx + dy*dy);
-        if(dist < CONNECT_DIST){
-          const alpha = (1 - dist / CONNECT_DIST) * .08;
-          ctx.strokeStyle = 'rgba(42,171,238,' + alpha + ')';
-          ctx.lineWidth = .5;
-          ctx.beginPath();
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.stroke();
+    for(i=0;i<particles.length;i++){
+      p=particles[i];
+      // connections
+      for(j=i+1;j<particles.length;j++){
+        dx=p.x-particles[j].x;dy=p.y-particles[j].y;
+        d=Math.sqrt(dx*dx+dy*dy);
+        if(d<CDIST){
+          a=(1-d/CDIST)*.06*p.depth;
+          ctx.strokeStyle='rgba(42,171,238,'+a+')';
+          ctx.lineWidth=.5;
+          ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(particles[j].x,particles[j].y);ctx.stroke();
         }
       }
-
-      // Mouse connection
-      const mdx = particles[i].x - mouse.x;
-      const mdy = particles[i].y - mouse.y;
-      const mdist = Math.sqrt(mdx*mdx + mdy*mdy);
-      if(mdist < MOUSE_DIST){
-        const alpha = (1 - mdist / MOUSE_DIST) * .15;
-        ctx.strokeStyle = 'rgba(42,171,238,' + alpha + ')';
-        ctx.lineWidth = .8;
-        ctx.beginPath();
-        ctx.moveTo(particles[i].x, particles[i].y);
-        ctx.lineTo(mouse.x, mouse.y);
-        ctx.stroke();
+      // mouse
+      dx=p.x-mouse.x;dy=p.y-mouse.y;d=Math.sqrt(dx*dx+dy*dy);
+      if(d<MDIST){
+        a=(1-d/MDIST)*.18*p.depth;
+        ctx.strokeStyle='rgba(42,171,238,'+a+')';
+        ctx.lineWidth=.7;
+        ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(mouse.x,mouse.y);ctx.stroke();
       }
+      // dot
+      ctx.fillStyle='rgba(42,171,238,'+(p.depth*.18)+')';
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r*p.depth,0,Math.PI*2);ctx.fill();
+      // move
+      p.x+=p.vx;p.y+=p.vy;
+      if(p.x<0||p.x>w)p.vx*=-1;
+      if(p.y<0||p.y>h)p.vy*=-1;
     }
-
-    // Particles
-    for(let i = 0; i < particles.length; i++){
-      const p = particles[i];
-      ctx.fillStyle = 'rgba(42,171,238,.15)';
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fill();
-
-      p.x += p.vx;
-      p.y += p.vy;
-
-      if(p.x < 0 || p.x > w) p.vx *= -1;
-      if(p.y < 0 || p.y > h) p.vy *= -1;
-    }
-
-    requestAnimationFrame(drawParticles);
+    requestAnimationFrame(draw);
   }
 
-  window.addEventListener('resize', function(){
-    resize();
-    createParticles();
-  });
+  window.addEventListener('resize',function(){resize();initParticles();});
+  document.addEventListener('mousemove',function(e){mouse.x=e.clientX;mouse.y=e.clientY;});
+  document.addEventListener('mouseleave',function(){mouse.x=mouse.y=-9999;});
+  // Touch support
+  document.addEventListener('touchmove',function(e){mouse.x=e.touches[0].clientX;mouse.y=e.touches[0].clientY;},{passive:true});
+  document.addEventListener('touchend',function(){mouse.x=mouse.y=-9999;});
+  resize();initParticles();draw();
 
-  document.addEventListener('mousemove', function(e){
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
-  });
+  /* ---- REVEAL ---- */
+  var revealEls = document.querySelectorAll('.reveal');
+  for(var ri=0;ri<revealEls.length;ri++){
+    (function(el,i){
+      setTimeout(function(){el.classList.add('visible');},100+i*100);
+    })(revealEls[ri],ri);
+  }
 
-  document.addEventListener('mouseleave', function(){
-    mouse.x = -1000;
-    mouse.y = -1000;
-  });
-
-  resize();
-  createParticles();
-  drawParticles();
-
-  /* ---- STAGGER REVEAL ---- */
-  const reveals = document.querySelectorAll('.reveal');
-  reveals.forEach(function(el, i){
-    setTimeout(function(){
-      el.classList.add('visible');
-    }, 120 + i * 120);
-  });
-
-  /* ---- COUNTER ANIMATION ---- */
-  const counters = document.querySelectorAll('[data-target]');
-  let counted = false;
-
+  /* ---- COUNTERS ---- */
+  var counters = document.querySelectorAll('[data-target]');
+  var counted = false;
   function animateCounters(){
-    if(counted) return;
-    counted = true;
-    counters.forEach(function(el){
-      const target = parseInt(el.getAttribute('data-target'));
-      const duration = 1800;
-      const start = performance.now();
-
-      function update(now){
-        const elapsed = now - start;
-        const progress = Math.min(elapsed / duration, 1);
-        const ease = 1 - Math.pow(1 - progress, 3);
-        const current = Math.round(ease * target);
-
-        if(target >= 1000){
-          el.textContent = (current / 1000).toFixed(1).replace('.0','') + 'k+';
-        } else {
-          el.textContent = current + '+';
+    if(counted)return;counted=true;
+    for(var ci=0;ci<counters.length;ci++){
+      (function(el){
+        var target=parseInt(el.getAttribute('data-target'));
+        var start=performance.now();
+        function up(now){
+          var p=Math.min((now-start)/1600,1);
+          var e=1-Math.pow(1-p,3);
+          var v=Math.round(e*target);
+          el.textContent=target>=1000?(v/1000).toFixed(1).replace('.0','')+'k+':v+'+';
+          if(p<1)requestAnimationFrame(up);
         }
-
-        if(progress < 1) requestAnimationFrame(update);
-      }
-
-      requestAnimationFrame(update);
-    });
+        requestAnimationFrame(up);
+      })(counters[ci]);
+    }
   }
 
-  // Trigger counters when proof bar is visible
-  const proofBar = document.querySelector('.proof-bar');
+  var proofBar=document.querySelector('.proof-bar');
   if(proofBar){
-    const obs = new IntersectionObserver(function(entries){
-      if(entries[0].isIntersecting) animateCounters();
-    }, {threshold: .5});
+    var obs=new IntersectionObserver(function(e){if(e[0].isIntersecting)animateCounters();},{threshold:.5});
     obs.observe(proofBar);
   }
 
-  /* ---- TELEGRAM MODAL ---- */
-  const TELEGRAM_URL = 'https://t.me/lexpertIA';
-  const overlay = document.getElementById('modalOverlay');
-  const emailForm = document.getElementById('emailForm');
-  const emailInput = document.getElementById('emailInput');
-  const submitBtn = document.getElementById('submitBtn');
-  const telegramBtn = document.getElementById('telegramBtn');
-  const modalClose = document.getElementById('modalClose');
-  const bypassBtn = document.getElementById('bypassBtn');
+  /* ---- EMAIL STORAGE (localStorage) ---- */
+  function getStoredEmails(){
+    try{return JSON.parse(localStorage.getItem('lexpertia_emails')||'[]');}
+    catch(e){return [];}
+  }
+  function storeEmail(email){
+    var emails=getStoredEmails();
+    if(emails.indexOf(email)===-1){
+      emails.push(email);
+      localStorage.setItem('lexpertia_emails',JSON.stringify(emails));
+    }
+    return emails.length;
+  }
+
+  // Show stored count
+  var countEl=document.getElementById('emailCountText');
+  var stored=getStoredEmails();
+  if(stored.length>0) countEl.textContent=stored.length+' inscrit'+(stored.length>1?'s':'');
+
+  /* ---- MODAL ---- */
+  var overlay=document.getElementById('modalOverlay');
+  var emailForm=document.getElementById('emailForm');
+  var emailInput=document.getElementById('emailInput');
+  var submitBtn=document.getElementById('submitBtn');
+  var telegramBtn=document.getElementById('telegramBtn');
+  var modalClose=document.getElementById('modalClose');
+  var bypassBtn=document.getElementById('bypassBtn');
 
   function openModal(){
     overlay.classList.add('active');
-    setTimeout(function(){ emailInput.focus(); }, 350);
+    setTimeout(function(){emailInput.focus();},350);
   }
+  function closeModal(){overlay.classList.remove('active');}
+  function goTelegram(){window.open(TELEGRAM_URL,'_blank','noopener');}
 
-  function closeModal(){
-    overlay.classList.remove('active');
-  }
+  telegramBtn.addEventListener('click',function(e){ripple(e,this);openModal();});
+  modalClose.addEventListener('click',closeModal);
+  overlay.addEventListener('click',function(e){if(e.target===overlay)closeModal();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});
+  bypassBtn.addEventListener('click',function(){closeModal();goTelegram();});
 
-  function goToTelegram(){
-    window.open(TELEGRAM_URL, '_blank', 'noopener');
-  }
-
-  telegramBtn.addEventListener('click', function(e){
-    ripple(e, this);
-    openModal();
-  });
-
-  modalClose.addEventListener('click', closeModal);
-  overlay.addEventListener('click', function(e){
-    if(e.target === overlay) closeModal();
-  });
-  document.addEventListener('keydown', function(e){
-    if(e.key === 'Escape') closeModal();
-  });
-
-  bypassBtn.addEventListener('click', function(){
-    closeModal();
-    goToTelegram();
-  });
-
-  emailForm.addEventListener('submit', function(e){
+  emailForm.addEventListener('submit',function(e){
     e.preventDefault();
-    var email = emailInput.value.trim();
-    if(!email) return;
+    var email=emailInput.value.trim();
+    if(!email)return;
 
-    submitBtn.textContent = 'Envoi…';
-    submitBtn.disabled = true;
+    submitBtn.textContent='Envoi…';
+    submitBtn.disabled=true;
 
-    console.log('[L\'Expert IA] Email collecté:', email);
+    // Store locally
+    var total=storeEmail(email);
+    countEl.textContent=total+' inscrit'+(total>1?'s':'');
+    console.log('[L\'Expert IA] Email:',email,'| Total:',total);
 
-    // TODO: Replace with Make.com / Google Sheet webhook
-    // fetch('YOUR_WEBHOOK_URL', {
-    //   method: 'POST',
-    //   headers: {'Content-Type':'application/json'},
-    //   body: JSON.stringify({ email: email, date: new Date().toISOString() })
-    // });
+    // Send to Formsubmit.co (real email delivery)
+    if(FORMSUBMIT_URL.indexOf('TON_EMAIL')===-1){
+      fetch(FORMSUBMIT_URL,{
+        method:'POST',
+        headers:{'Content-Type':'application/json','Accept':'application/json'},
+        body:JSON.stringify({
+          email:email,
+          _subject:'Nouvel inscrit L\'Expert IA',
+          _template:'table',
+          source:'landing-lexpert-ia',
+          date:new Date().toISOString()
+        })
+      }).then(function(r){return r.json();}).then(function(data){
+        if(data.success){showSuccess();}
+        else{showSuccess();}// still redirect even if API issue
+      }).catch(function(){showSuccess();});
+    } else {
+      // Formsubmit not configured yet — still works with localStorage
+      showSuccess();
+    }
 
-    setTimeout(function(){
-      submitBtn.textContent = '\u2713 C\'est bon !';
+    function showSuccess(){
+      submitBtn.textContent='\u2713 C\'est bon !';
       submitBtn.classList.add('success');
       setTimeout(function(){
         closeModal();
-        goToTelegram();
+        goTelegram();
         setTimeout(function(){
-          emailInput.value = '';
-          submitBtn.textContent = 'Accéder au Telegram \u2192';
-          submitBtn.disabled = false;
+          emailInput.value='';
+          submitBtn.textContent='Acc\u00e9der au Telegram \u2192';
+          submitBtn.disabled=false;
           submitBtn.classList.remove('success');
-        }, 500);
-      }, 800);
-    }, 400);
+        },500);
+      },800);
+    }
   });
 
   /* ---- RIPPLE ---- */
   document.querySelectorAll('.link-btn:not(.soon)').forEach(function(btn){
-    btn.addEventListener('click', function(e){ ripple(e, this); });
+    btn.addEventListener('click',function(e){ripple(e,this);});
   });
 
-  function ripple(e, el){
-    var rect = el.getBoundingClientRect();
-    var size = Math.max(rect.width, rect.height);
-    var r = document.createElement('span');
-    r.className = 'ripple';
-    r.style.width = r.style.height = size + 'px';
-    r.style.left = (e.clientX - rect.left - size/2) + 'px';
-    r.style.top = (e.clientY - rect.top - size/2) + 'px';
+  function ripple(e,el){
+    var rect=el.getBoundingClientRect();
+    var size=Math.max(rect.width,rect.height);
+    var r=document.createElement('span');
+    r.className='ripple';
+    r.style.width=r.style.height=size+'px';
+    r.style.left=(e.clientX-rect.left-size/2)+'px';
+    r.style.top=(e.clientY-rect.top-size/2)+'px';
     el.appendChild(r);
-    r.addEventListener('animationend', function(){ r.remove(); });
+    r.addEventListener('animationend',function(){r.remove();});
   }
 
 })();
