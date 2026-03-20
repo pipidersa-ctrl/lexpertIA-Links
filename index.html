@@ -456,15 +456,26 @@
     var email=inlineEmail.value.trim();
     if(!email)return;
     inlineBtn.textContent='Envoi...';inlineBtn.disabled=true;
-    var total=storeEmail(email);
-    console.log('[LEXPERTIA]',email,'| Total:',total);
-    fetch(FORMSUBMIT_URL,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({email:email,_subject:'Nouveau lead \u2014 '+email,_template:'table',source:'lexpert-ia',date:new Date().toISOString()})}).then(function(r){return r.json()}).then(function(){done()}).catch(function(){done()});
-    function done(){
+    storeEmail(email);
+    console.log('[LEXPERTIA]',email);
+
+    // 1. Envoie à Formsubmit (backup Gmail)
+    fetch(FORMSUBMIT_URL,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({email:email,_subject:'Nouveau lead \u2014 '+email,_template:'table',source:'lexpert-ia',date:new Date().toISOString()})}).catch(function(){});
+
+    // 2. Envoie à Systeme.io via iframe caché (enregistre dans tes Contacts)
+    var iframe=document.createElement('iframe');
+    iframe.style.cssText='display:none';
+    iframe.src=CAPTURE_URL+'?email='+encodeURIComponent(email);
+    document.body.appendChild(iframe);
+    setTimeout(function(){iframe.remove()},5000);
+
+    // Débloque immédiatement
+    setTimeout(function(){
       inlineBtn.textContent='\u2713 D\u00e9bloqu\u00e9 !';
       inlineBtn.disabled=false;
       unlockButtons();
       fireConfetti();
-    }
+    },800);
   });
 
   /* ---- CONFETTI ---- */
