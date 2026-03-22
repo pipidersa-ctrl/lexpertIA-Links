@@ -1,567 +1,1373 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-CR0EJ7H2TW"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-CR0EJ7H2TW');
-</script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>LEXPERTIA-LINKS</title>
-<meta name="description" content="Monétise l'intelligence artificielle. Avant tout le monde.">
-<meta property="og:title" content="LEXPERTIA-LINKS">
-<meta property="og:description" content="La 1ère communauté francophone dédiée à la monétisation de l'IA.">
-<meta property="og:type" content="website">
-<meta name="theme-color" content="#0a0a0a">
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<style>
-  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Académie Experts IA — Formation Complète Monétisation IA</title>
+  <meta name="description" content="Monétise l'intelligence artificielle. Avant tout le monde. Formation complète, agent IA trading, communauté privée.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-  :root{
-    --bg:#0a0a0a;
-    --surface:rgba(255,255,255,.05);
-    --surface-hover:rgba(255,255,255,.08);
-    --text:#f0f0f0;
-    --muted:rgba(255,255,255,.45);
-    --border:rgba(255,255,255,.08);
-    --telegram:#2AABEE;
-    --glow:rgba(42,171,238,.15);
-    --radius:16px;
-    --transition:cubic-bezier(.4,0,.2,1);
-  }
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CR0EJ7H2TW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CR0EJ7H2TW');
+  </script>
 
-  body{
-    font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
-    background:var(--bg);
-    color:var(--text);
-    min-height:100dvh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:40px 20px 100px;
-    -webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
-  }
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-  #bgCanvas{position:fixed;inset:0;z-index:0;pointer-events:none}
-  .orb{position:fixed;width:500px;height:500px;border-radius:50%;filter:blur(120px);opacity:.06;pointer-events:none;z-index:0}
-  .orb-1{top:-180px;right:-120px;background:var(--telegram)}
-  .orb-2{bottom:-200px;left:-150px;background:#8b5cf6}
+    :root {
+      --bg: #08080c;
+      --bg-elevated: #0d0d12;
+      --bg-card: #111117;
+      --bg-card-hover: #15151c;
+      --border: #1a1a24;
+      --border-light: #22223a;
+      --text: #f2f0ed;
+      --text-secondary: #c0bfba;
+      --text-muted: #7a7a8a;
+      --text-dim: #4a4a58;
+      --gold: #d4a853;
+      --gold-light: #e8c97a;
+      --gold-dim: rgba(212, 168, 83, 0.08);
+      --gold-glow: rgba(212, 168, 83, 0.15);
+      --green: #34d399;
+      --radius: 16px;
+    }
 
-  /* CURSOR GLOW */
-  .cursor-glow{position:fixed;width:280px;height:280px;border-radius:50%;pointer-events:none;z-index:0;background:radial-gradient(circle,rgba(42,171,238,.08) 0%,rgba(139,92,246,.04) 40%,transparent 70%);transform:translate(-50%,-50%);transition:opacity .3s;opacity:0;will-change:transform}
-  @media(max-width:768px){.cursor-glow{display:none}}
+    html { scroll-behavior: smooth; }
 
-  /* COUNTDOWN */
-  .countdown-bar{width:100%;background:linear-gradient(135deg,rgba(239,68,68,.08),rgba(249,115,22,.06));border:1px solid rgba(239,68,68,.12);border-radius:12px;padding:10px 14px;display:flex;align-items:center;justify-content:center;gap:8px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
-  .countdown-icon{font-size:.8rem;line-height:1}
-  .countdown-label{font-size:.6875rem;color:rgba(255,255,255,.5);font-weight:500}
-  .countdown-time{font-size:.875rem;font-weight:700;font-variant-numeric:tabular-nums;color:#f87171;letter-spacing:.03em}
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
 
-  .container{position:relative;z-index:1;width:100%;max-width:400px;display:flex;flex-direction:column;align-items:center;gap:20px}
+    /* ════ TOP BANNER ════ */
+    .top-banner {
+      background: var(--bg-elevated);
+      border-bottom: 1px solid var(--border);
+      padding: 0.6rem 1rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    .top-banner span { color: var(--gold); font-weight: 600; }
+    .top-timer {
+      font-variant-numeric: tabular-nums;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-left: 0.35rem;
+    }
 
-  .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s var(--transition),transform .6s var(--transition)}
-  .reveal.visible{opacity:1;transform:translateY(0)}
+    /* ════ TICKER ════ */
+    .ticker-wrap {
+      background: linear-gradient(135deg, rgba(212,168,83,0.06), transparent);
+      border-bottom: 1px solid rgba(212,168,83,0.08);
+      overflow: hidden;
+      padding: 0.55rem 0;
+    }
+    .ticker-track {
+      display: flex;
+      gap: 4rem;
+      animation: ticker 40s linear infinite;
+      white-space: nowrap;
+      width: max-content;
+    }
+    .ticker-track:hover { animation-play-state: paused; }
+    @keyframes ticker {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .ticker-item {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+    .ticker-item::before {
+      content: '⚡';
+      margin-right: 0.5rem;
+      color: var(--gold);
+    }
 
-  /* AVATAR */
-  .avatar-wrapper{position:relative;width:80px;height:80px}
-  .avatar{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#1a1a2e,#16213e);display:flex;align-items:center;justify-content:center;overflow:hidden;border:2px solid rgba(255,255,255,.1);box-shadow:0 0 40px var(--glow),0 8px 32px rgba(0,0,0,.4);position:relative;z-index:1}
-  .avatar-glow{position:absolute;inset:-6px;border-radius:50%;background:conic-gradient(from 0deg,var(--telegram),#8b5cf6,var(--telegram));opacity:.2;animation:glow-spin 6s linear infinite,glow-pulse 3s ease-in-out infinite;z-index:0}
-  @keyframes glow-spin{to{transform:rotate(360deg)}}
-  @keyframes glow-pulse{0%,100%{opacity:.15;inset:-6px}50%{opacity:.3;inset:-10px}}
-  .avatar-icon{width:32px;height:32px;color:var(--telegram);opacity:.9}
+    /* ════ NAV ════ */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 0.85rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(8, 8, 12, 0.92);
+      backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border);
+    }
+    .logo {
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .nav-links { display: flex; gap: 1.75rem; align-items: center; }
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta {
+      background: var(--gold) !important;
+      color: #08080c !important;
+      padding: 0.5rem 1.25rem;
+      border-radius: 100px;
+      font-weight: 700 !important;
+      transition: all 0.3s !important;
+    }
+    .nav-cta:hover { background: var(--gold-light) !important; }
 
-  /* IDENTITY */
-  .identity{text-align:center}
-  .name{font-size:1.5rem;font-weight:700;letter-spacing:-.03em;line-height:1.15;background:linear-gradient(90deg,#fff,var(--telegram),#a78bfa,#fff);background-size:300% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:name-gradient 6s ease infinite}
-  @keyframes name-gradient{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-  .tagline{margin-top:6px;font-size:.8125rem;color:var(--muted);font-weight:400;line-height:1.5}
+    /* ════ HERO ════ */
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 5rem 2rem 6rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        #0c041e 0%,
+        #08080c 22%,
+        #04101e 44%,
+        #08080c 66%,
+        #041e1a 88%,
+        #08080c 100%
+      );
+      background-size: 400% 400%;
+      animation: heroGradient 25s ease infinite;
+    }
+    @keyframes heroGradient {
+      0% { background-position: 0% 50%; }
+      25% { background-position: 100% 0%; }
+      50% { background-position: 100% 100%; }
+      75% { background-position: 0% 100%; }
+      100% { background-position: 0% 50%; }
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(1px 1px at 8% 18%, rgba(255,255,255,0.2) 0%, transparent 100%),
+        radial-gradient(1px 1px at 22% 55%, rgba(255,255,255,0.15) 0%, transparent 100%),
+        radial-gradient(1.2px 1.2px at 38% 12%, rgba(212,168,83,0.15) 0%, transparent 100%),
+        radial-gradient(1px 1px at 52% 72%, rgba(255,255,255,0.1) 0%, transparent 100%),
+        radial-gradient(1px 1px at 68% 30%, rgba(255,255,255,0.18) 0%, transparent 100%),
+        radial-gradient(1.2px 1.2px at 82% 50%, rgba(212,168,83,0.12) 0%, transparent 100%),
+        radial-gradient(1px 1px at 12% 82%, rgba(255,255,255,0.12) 0%, transparent 100%),
+        radial-gradient(1px 1px at 88% 8%, rgba(255,255,255,0.15) 0%, transparent 100%),
+        radial-gradient(1px 1px at 48% 42%, rgba(212,168,83,0.08) 0%, transparent 100%),
+        radial-gradient(1px 1px at 75% 68%, rgba(255,255,255,0.1) 0%, transparent 100%),
+        radial-gradient(1px 1px at 28% 92%, rgba(255,255,255,0.12) 0%, transparent 100%),
+        radial-gradient(1px 1px at 62% 88%, rgba(212,168,83,0.1) 0%, transparent 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 740px;
+    }
+    .hero-profile {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .hero-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 2px solid rgba(212,168,83,0.3);
+      object-fit: cover;
+    }
+    .hero-profile-info { text-align: left; }
+    .hero-profile-name {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .hero-profile-sub {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(212,168,83,0.1);
+      border: 1px solid rgba(212,168,83,0.2);
+      border-radius: 100px;
+      padding: 0.3rem 0.85rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 {
+      font-size: clamp(2.25rem, 5.5vw, 3.85rem);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1.08;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 .gold {
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin: 0 auto 2.5rem;
+      font-weight: 300;
+      line-height: 1.75;
+    }
+    .hero-cta-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .hero-note {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      margin-top: 0.5rem;
+    }
+    .hero-social {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      justify-content: center;
+    }
+    .hero-social a {
+      font-size: 0.72rem;
+      color: var(--text-dim);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: color 0.3s;
+    }
+    .hero-social a:hover { color: var(--gold); }
 
-  /* SCRAMBLE TEXT */
-  .scramble-wrap{text-align:center;min-height:22px;margin-top:4px}
-  .scramble{font-size:.75rem;font-weight:600;color:var(--telegram);letter-spacing:.02em;display:inline}
-  .scramble .char-glyph{color:rgba(42,171,238,.4)}
+    /* ════ BUTTONS ════ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.95rem 2.5rem;
+      border-radius: 100px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      border: none;
+      font-family: inherit;
+      letter-spacing: -0.01em;
+    }
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: #08080c;
+      box-shadow: 0 2px 16px var(--gold-glow);
+    }
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 32px rgba(212, 168, 83, 0.35);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--text-muted);
+      border: 1px solid var(--border-light);
+      font-weight: 500;
+      font-size: 0.88rem;
+    }
+    .btn-outline:hover { color: var(--text); border-color: rgba(212,168,83,0.3); }
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-muted);
+      font-weight: 500;
+      font-size: 0.88rem;
+      padding: 0.6rem 1.5rem;
+    }
+    .btn-ghost:hover { color: var(--text); }
+    .btn-sm { padding: 0.7rem 1.75rem; font-size: 0.88rem; }
+    .btn-telegram {
+      background: #229ED9;
+      color: #fff;
+    }
+    .btn-telegram:hover {
+      background: #1d8cbc;
+      transform: translateY(-2px);
+    }
+    .btn-youtube {
+      background: #FF0000;
+      color: #fff;
+    }
+    .btn-youtube:hover {
+      background: #cc0000;
+      transform: translateY(-2px);
+    }
 
-  /* TIP CARD — GAME CHANGER */
-  .tip-card{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:14px 16px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);display:flex;align-items:flex-start;gap:12px;transition:all .5s var(--transition);cursor:default}
-  .tip-icon{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,rgba(42,171,238,.15),rgba(139,92,246,.15));display:flex;align-items:center;justify-content:center;flex-shrink:0}
-  .tip-icon svg{width:16px;height:16px;color:var(--telegram)}
-  .tip-body{display:flex;flex-direction:column;gap:2px;min-height:36px}
-  .tip-label{font-size:.5625rem;text-transform:uppercase;letter-spacing:.08em;color:var(--telegram);font-weight:600}
-  .tip-text{font-size:.75rem;color:rgba(255,255,255,.6);line-height:1.45;transition:opacity .3s}
+    /* ════ LAYOUT ════ */
+    .container { max-width: 1000px; margin: 0 auto; padding: 0 2rem; }
+    section { padding: 6rem 0; }
+    .section-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+    h2 {
+      font-size: clamp(1.5rem, 3.5vw, 2.35rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 0.75rem;
+    }
+    .section-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin-bottom: 3rem;
+      font-weight: 300;
+      line-height: 1.75;
+    }
+    .section-center { text-align: center; }
+    .section-center .section-desc { margin-left: auto; margin-right: auto; }
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      max-width: 1000px;
+      margin: 0 auto;
+    }
 
-  /* INLINE EMAIL */
-  .inline-email-form{width:100%;display:flex;gap:8px}
-  .inline-email-form .modal-input{flex:1;margin:0}
-  .inline-email-btn{background:var(--telegram);color:#fff;border:none;padding:12px 18px;border-radius:12px;font-size:.8125rem;font-weight:600;font-family:inherit;cursor:pointer;white-space:nowrap;transition:all .25s var(--transition);box-shadow:0 2px 12px rgba(42,171,238,.2);flex-shrink:0}
-  .inline-email-btn:hover{background:#1da1d9;box-shadow:0 4px 20px rgba(42,171,238,.35)}
-  .inline-email-btn:active{transform:scale(.97)}
-  .inline-email-btn.success{background:#22c55e;box-shadow:0 2px 12px rgba(34,197,94,.3);pointer-events:none}
+    /* ════ FEATURES GRID ════ */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 1rem;
+    }
+    .feature-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      transition: all 0.35s ease;
+    }
+    .feature-card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--border-light);
+      transform: translateY(-2px);
+    }
+    .feature-emoji { font-size: 1.5rem; margin-bottom: 0.75rem; display: block; }
+    .feature-card h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      letter-spacing: -0.01em;
+    }
+    .feature-card p { font-size: 0.84rem; color: var(--text-muted); line-height: 1.6; }
+    .feature-tag {
+      display: inline-block;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.15rem 0.55rem;
+      border-radius: 100px;
+      margin-bottom: 0.6rem;
+      background: var(--gold-dim);
+      color: var(--gold);
+      border: 1px solid rgba(212, 168, 83, 0.12);
+    }
+    .lifetime-card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.75rem;
+      max-width: 460px;
+      margin: 1.5rem auto 0;
+    }
+    .lifetime-card h3 { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.15rem; }
+    .lifetime-card p { font-size: 0.8rem; color: var(--text-muted); margin: 0; }
 
-  /* LINKS */
-  .links{width:100%;display:flex;flex-direction:column;gap:10px}
-  .link-btn{position:relative;display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:15px 20px;border:1px solid var(--border);border-radius:var(--radius);background:var(--surface);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:var(--text);font-size:.875rem;font-weight:500;text-decoration:none;cursor:pointer;transition:all .3s var(--transition);overflow:hidden;user-select:none;-webkit-tap-highlight-color:transparent;font-family:inherit}
-  .link-btn:hover{background:var(--surface-hover);border-color:rgba(255,255,255,.12);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.3)}
-  .link-btn:active{transform:translateY(0) scale(.98);transition:transform .1s}
-  .link-btn .icon{width:18px;height:18px;flex-shrink:0}
+    /* ════ FACTS GRID ════ */
+    .facts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .fact-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      text-align: center;
+    }
+    .fact-icon { font-size: 1.25rem; margin-bottom: 0.5rem; }
+    .fact-title { font-size: 0.88rem; font-weight: 700; margin-bottom: 0.25rem; }
+    .fact-desc { font-size: 0.78rem; color: var(--text-muted); line-height: 1.5; }
 
-  @keyframes shimmer{0%{left:-100%}35%{left:150%}100%{left:150%}}
+    /* ════ COMPARISON ════ */
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .comparison-col {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+    }
+    .comparison-col.after { border-color: rgba(212, 168, 83, 0.15); }
+    .comparison-header {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1.1rem;
+      padding-bottom: 0.65rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .comparison-col.before .comparison-header { color: var(--text-dim); }
+    .comparison-col.after .comparison-header { color: var(--gold); }
+    .comparison-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.55rem;
+      padding: 0.4rem 0;
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+    .comparison-col.before .comparison-item { color: var(--text-muted); }
 
-  /* TELEGRAM — secondary */
-  .link-btn.telegram{border:1px solid rgba(42,171,238,.2);background:rgba(42,171,238,.06);color:#fff;padding:14px 20px;font-size:.875rem;font-weight:500;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);gap:12px}
-  .link-btn.telegram:hover{border-color:rgba(42,171,238,.35);background:rgba(42,171,238,.12);box-shadow:0 8px 24px rgba(42,171,238,.1)}
-  .link-btn.telegram .icon{width:18px;height:18px;color:var(--telegram)}
+    /* ════ SOCIAL LINKS SECTION ════ */
+    .social-section {
+      background: linear-gradient(135deg, rgba(212,168,83,0.03), transparent);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+    .social-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      text-decoration: none;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      transition: all 0.3s ease;
+    }
+    .social-card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--border-light);
+      transform: translateY(-2px);
+    }
+    .social-card-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      flex-shrink: 0;
+    }
+    .social-card-icon.telegram { background: rgba(34,158,217,0.15); }
+    .social-card-icon.youtube { background: rgba(255,0,0,0.12); }
+    .social-card-info h4 { font-size: 0.88rem; font-weight: 700; margin-bottom: 0.15rem; }
+    .social-card-info p { font-size: 0.75rem; color: var(--text-muted); margin: 0; }
+    .social-card-arrow {
+      margin-left: auto;
+      color: var(--text-dim);
+      font-size: 1rem;
+      transition: transform 0.3s, color 0.3s;
+    }
+    .social-card:hover .social-card-arrow { transform: translateX(3px); color: var(--gold); }
 
-  /* PREMIUM — HERO CTA */
-  .link-btn.premium{position:relative;border:2px solid rgba(251,191,36,.35);background:linear-gradient(135deg,rgba(251,191,36,.12),rgba(245,158,11,.08));backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);gap:12px;padding:20px 24px;font-weight:700;font-size:1rem;letter-spacing:-.01em;box-shadow:0 4px 30px rgba(251,191,36,.15),0 0 60px rgba(251,191,36,.05)}
-  .link-btn.premium::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(251,191,36,.15),transparent);animation:shimmer 3.5s ease infinite;z-index:1;pointer-events:none}
-  .link-btn.premium:hover{border-color:rgba(251,191,36,.6);background:linear-gradient(135deg,rgba(251,191,36,.2),rgba(245,158,11,.12));box-shadow:0 8px 40px rgba(251,191,36,.25),0 0 80px rgba(251,191,36,.08);transform:translateY(-3px)}
-  .link-btn.premium .icon{color:#fbbf24;width:20px;height:20px}
-  .premium-badge{position:absolute;top:-1px;right:-1px;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;font-size:.5rem;font-weight:700;padding:3px 8px;border-radius:0 var(--radius) 0 8px;letter-spacing:.03em;z-index:2;box-shadow:0 2px 8px rgba(245,158,11,.4);text-transform:uppercase}
-  .premium-hint{text-align:center;font-size:.625rem;color:var(--muted);margin-top:-4px;opacity:.6}
-  .browser-hint{text-align:center;font-size:.625rem;color:var(--muted);margin-top:-4px;opacity:.4}
+    /* ════ EMAIL CAPTURE ════ */
+    .email-section {
+      background: linear-gradient(135deg, rgba(212,168,83,0.05), rgba(8,8,12,0));
+    }
+    .email-card {
+      max-width: 560px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: 20px;
+      padding: 2.75rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .email-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .email-card h3 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+    .email-card p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 1.75rem;
+      line-height: 1.7;
+    }
+    .email-form {
+      display: flex;
+      gap: 0.65rem;
+      max-width: 420px;
+      margin: 0 auto;
+    }
+    .email-input {
+      flex: 1;
+      background: var(--bg);
+      border: 1px solid var(--border-light);
+      border-radius: 100px;
+      padding: 0.75rem 1.25rem;
+      font-size: 0.88rem;
+      color: var(--text);
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+    .email-input:focus { border-color: rgba(212,168,83,0.4); }
+    .email-input::placeholder { color: var(--text-dim); }
+    .email-btn {
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: #08080c;
+      border: none;
+      border-radius: 100px;
+      padding: 0.75rem 1.5rem;
+      font-size: 0.88rem;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.3s;
+      white-space: nowrap;
+    }
+    .email-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 20px var(--gold-glow); }
+    .email-success {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      color: var(--green);
+      font-weight: 600;
+      margin-top: 1rem;
+    }
+    .email-legal {
+      font-size: 0.68rem;
+      color: var(--text-dim);
+      margin-top: 0.75rem;
+    }
+    .email-perks {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 1.25rem;
+      flex-wrap: wrap;
+    }
+    .email-perk {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .email-perk::before { content: '✓'; color: var(--green); font-weight: 700; }
 
-  /* TELEGRAM — secondary */
+    /* ════ PRICING ════ */
+    .pricing-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: 20px;
+      padding: 3rem;
+      max-width: 540px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .pricing-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .pricing-name {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+    }
+    .pricing-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.02em;
+    }
+    .pricing-price {
+      font-size: 3.25rem;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      color: var(--gold);
+      margin-bottom: 0.2rem;
+    }
+    .pricing-price .currency { font-size: 1.8rem; vertical-align: super; }
+    .pricing-note { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 1.75rem; }
+    .pricing-list { text-align: left; margin-bottom: 2rem; }
+    .pricing-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      padding: 0.5rem 0;
+      font-size: 0.88rem;
+    }
+    .pricing-item .check { color: var(--gold); font-weight: 700; flex-shrink: 0; }
+    .pricing-cta {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.7rem;
+    }
+    .guarantee-inline {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
 
-  /* YOUTUBE */
-  .link-btn.youtube{gap:12px}
-  .link-btn.youtube:hover{border-color:rgba(255,0,0,.25);box-shadow:0 8px 24px rgba(255,0,0,.08)}
-  .link-btn.youtube .icon{color:#FF0000}
-  .link-btn.youtube .yt-sub{font-size:.5625rem;color:var(--muted);margin-left:auto;font-weight:500;letter-spacing:.02em;transition:color .3s}
-  .link-btn.youtube:hover .yt-sub{color:rgba(255,255,255,.7)}
+    /* ════ FAQ ════ */
+    .faq-list { max-width: 660px; margin: 0 auto; }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.92rem;
+      font-weight: 600;
+      text-align: left;
+      padding: 1.15rem 0;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      transition: color 0.3s;
+    }
+    .faq-question:hover { color: var(--gold); }
+    .faq-toggle {
+      font-size: 1.2rem;
+      color: var(--text-dim);
+      transition: transform 0.3s, color 0.3s;
+      flex-shrink: 0;
+    }
+    .faq-item.open .faq-toggle { transform: rotate(45deg); color: var(--gold); }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.4s ease;
+    }
+    .faq-item.open .faq-answer { max-height: 300px; padding-bottom: 1.15rem; }
+    .faq-answer p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.7; }
 
-  /* COMING SOON */
-  .link-btn.soon{cursor:default;opacity:.35;border-style:dashed;backdrop-filter:none}
-  .link-btn.soon:hover{transform:none;background:var(--surface);box-shadow:none;border-color:var(--border)}
-  .badge{font-size:.5rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;background:rgba(255,255,255,.06);color:var(--muted);padding:3px 7px;border-radius:5px;margin-left:auto}
-  .soon-sub{text-align:center;font-size:.6875rem;color:var(--muted);font-style:italic;margin-top:-4px;opacity:.4}
+    /* ════ GUARANTEE ════ */
+    .guarantee-card {
+      max-width: 560px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2.5rem;
+      text-align: center;
+    }
+    .guarantee-shield { font-size: 2.5rem; margin-bottom: 0.75rem; }
+    .guarantee-card h3 {
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin-bottom: 0.65rem;
+      letter-spacing: -0.02em;
+    }
+    .guarantee-card p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 400px;
+      margin: 0 auto;
+    }
 
-  /* EMAIL GATE */
-  .link-btn.locked{opacity:.4;pointer-events:none;filter:grayscale(.3)}
-  .email-gate-label{text-align:center;font-size:.6875rem;color:var(--muted);margin-bottom:-4px;display:flex;align-items:center;justify-content:center;gap:5px}
-  .email-gate-label svg{width:12px;height:12px;opacity:.5}
-  .inline-email-form.done .inline-email-btn{background:#22c55e;pointer-events:none}
-  .inline-email-form.done .modal-input{border-color:rgba(34,197,94,.3);opacity:.5;pointer-events:none}
+    /* ════ FINAL CTA ════ */
+    .final-cta {
+      text-align: center;
+      padding: 5rem 0;
+      position: relative;
+    }
+    .final-cta::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 500px;
+      height: 350px;
+      background: radial-gradient(circle, var(--gold-dim) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .final-cta h2, .final-cta p, .final-cta .btn { position: relative; z-index: 1; }
+    .final-cta p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 2rem; }
 
-  .modal-input{width:100%;padding:12px 14px;border:1px solid rgba(255,255,255,.1);border-radius:12px;font-size:.8125rem;font-family:inherit;background:rgba(255,255,255,.04);color:#fff;outline:none;transition:border-color .2s,box-shadow .2s}
-  .modal-input:focus{border-color:var(--telegram);box-shadow:0 0 0 3px rgba(42,171,238,.1)}
-  .modal-input::placeholder{color:rgba(255,255,255,.2)}
+    /* ════ CONTACT & FOOTER ════ */
+    .contact-section {
+      text-align: center;
+      padding: 3rem 0 2rem;
+    }
+    .contact-link {
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid rgba(212,168,83,0.2);
+      padding-bottom: 1px;
+      transition: border-color 0.3s;
+    }
+    .contact-link:hover { border-color: var(--gold); }
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.75rem;
+      text-align: center;
+      font-size: 0.72rem;
+      color: var(--text-dim);
+    }
+    footer a { color: var(--text-dim); text-decoration: none; }
+    footer a:hover { color: var(--gold); }
 
-  /* ======================== STICKY MOBILE CTA ======================== */
-  .sticky-cta{position:fixed;bottom:0;left:0;right:0;z-index:80;background:rgba(10,10,10,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid var(--border);padding:12px 16px;display:none;align-items:center;gap:10px;transform:translateY(100%);transition:transform .4s var(--transition)}
-  .sticky-cta.show{transform:translateY(0)}
-  .sticky-cta-text{flex:1;display:flex;flex-direction:column;gap:1px}
-  .sticky-cta-title{font-size:.75rem;font-weight:600;color:#fff}
-  .sticky-cta-sub{font-size:.5625rem;color:var(--muted)}
-  .sticky-cta-btn{background:var(--telegram);color:#fff;border:none;padding:10px 18px;border-radius:10px;font-size:.75rem;font-weight:600;font-family:inherit;cursor:pointer;white-space:nowrap;transition:background .2s;flex-shrink:0}
-  .sticky-cta-btn:hover{background:#1da1d9}
+    /* ════ STICKY BAR ════ */
+    .sticky-bar {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 150;
+      background: rgba(8, 8, 12, 0.95);
+      backdrop-filter: blur(24px);
+      border-top: 1px solid var(--border);
+      padding: 0.7rem 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1.25rem;
+      transform: translateY(100%);
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .sticky-bar.visible { transform: translateY(0); }
+    .sticky-bar .sticky-price { font-size: 1.05rem; font-weight: 800; color: var(--gold); }
+    .sticky-bar .sticky-label { font-size: 0.8rem; color: var(--text-muted); }
+    .sticky-bar .btn { padding: 0.6rem 1.5rem; font-size: 0.85rem; }
 
-  @media(max-width:768px){
-    .sticky-cta{display:flex}
-    body{padding-bottom:120px}
-  }
+    /* ════ ANIMATIONS ════ */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
 
-  /* CONFETTI */
-  .confetti-container{position:fixed;inset:0;pointer-events:none;z-index:200;overflow:hidden}
-  .confetti-piece{position:absolute;width:8px;height:8px;border-radius:2px;opacity:0;animation:confetti-fall 1.5s var(--transition) forwards}
-  @keyframes confetti-fall{0%{opacity:1;transform:translateY(0) rotate(0deg) scale(1)}100%{opacity:0;transform:translateY(60vh) rotate(720deg) scale(.3)}}
-
-  .footer{text-align:center;font-size:.5625rem;color:var(--muted);opacity:.25;letter-spacing:.02em;margin-top:8px}
-
-  /* IN-APP BROWSER BANNER */
-  .inapp-banner{display:none;position:fixed;top:0;left:0;right:0;z-index:9999;background:linear-gradient(135deg,#dc2626,#ea580c);padding:16px 20px;text-align:center;box-shadow:0 4px 20px rgba(220,38,38,.4);animation:banner-pulse 2s ease-in-out infinite}
-  @keyframes banner-pulse{0%,100%{box-shadow:0 4px 20px rgba(220,38,38,.4)}50%{box-shadow:0 4px 30px rgba(220,38,38,.6)}}
-  .inapp-banner.show{display:block}
-  .inapp-steps{display:flex;flex-direction:column;gap:6px;align-items:center}
-  .inapp-step{font-size:.9375rem;font-weight:700;color:#fff;line-height:1.4;letter-spacing:.01em}
-  .inapp-step .step-num{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;background:rgba(255,255,255,.2);border-radius:50%;font-size:.75rem;font-weight:800;margin-right:6px;vertical-align:middle}
-  .inapp-step .dots{font-size:1.25rem;letter-spacing:2px;font-weight:900;vertical-align:middle;background:rgba(255,255,255,.15);padding:1px 6px;border-radius:4px}
-  .inapp-arrow{font-size:1.1rem;opacity:.7;line-height:1}
-  body.has-banner{padding-top:130px}
-
-  .ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.1);transform:scale(0);animation:ripple-anim .5s ease-out forwards;pointer-events:none;z-index:1}
-  @keyframes ripple-anim{to{transform:scale(2.5);opacity:0}}
-
-  @media(min-width:480px){
-    .container{gap:24px}
-    .avatar-wrapper{width:88px;height:88px}
-    .avatar{width:88px;height:88px}
-    .name{font-size:1.625rem}
-  }
-  @media(max-width:380px){
-    .modal{padding:24px 16px 20px}
-    .link-btn.telegram{padding:16px 20px;font-size:.9375rem}
-  }
-  @media(prefers-reduced-motion:reduce){
-    .reveal{transition:none;opacity:1;transform:none}
-    .avatar-glow{animation:none}
-    .link-btn.premium::after{animation:none;display:none}
-    .name{animation:none}
-    #bgCanvas{display:none}
-    .cursor-glow{display:none}
-  }
-</style>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    /* ════ RESPONSIVE ════ */
+    @media (max-width: 768px) {
+      nav { padding: 0.75rem 1.25rem; }
+      .hide-mobile { display: none !important; }
+      .hero { min-height: 85vh; padding: 4rem 1.25rem 3rem; }
+      .container { padding: 0 1.25rem; }
+      section { padding: 4.5rem 0; }
+      .comparison-grid { grid-template-columns: 1fr; }
+      .pricing-card { padding: 2rem 1.5rem; }
+      .guarantee-card { padding: 2rem 1.5rem; }
+      .sticky-bar { gap: 0.75rem; padding: 0.7rem 1.25rem; }
+      .sticky-bar .sticky-label { display: none; }
+      .email-form { flex-direction: column; }
+      .email-card { padding: 2rem 1.5rem; }
+      .hero-profile { flex-direction: column; text-align: center; }
+      .hero-profile-info { text-align: center; }
+    }
+    @media (max-width: 480px) {
+      .features-grid { grid-template-columns: 1fr; }
+      .facts-grid { grid-template-columns: 1fr 1fr; }
+      .hero h1 { font-size: 2rem; }
+      .social-grid { grid-template-columns: 1fr; }
+      .email-perks { flex-direction: column; align-items: center; }
+    }
+  </style>
 </head>
 <body>
 
-<!-- IN-APP BROWSER BANNER -->
-<div class="inapp-banner" id="inappBanner">
-  <div class="inapp-steps">
-    <span class="inapp-step"><span class="step-num">1</span> Appuie sur <span class="dots">&middot;&middot;&middot;</span> en haut à droite</span>
-    <span class="inapp-arrow">&darr;</span>
-    <span class="inapp-step"><span class="step-num">2</span> "Ouvrir dans le navigateur"</span>
+  <!-- ════ TOP BANNER ════ -->
+  <div class="top-banner">
+    Offre limitée — <span>places restreintes</span> · Fermeture dans
+    <span class="top-timer" id="timer">00:00:00</span>
   </div>
-</div>
 
-<canvas id="bgCanvas"></canvas>
-<div class="orb orb-1"></div>
-<div class="orb orb-2"></div>
-<div class="cursor-glow" id="cursorGlow"></div>
-
-<div class="container">
-
-  <div class="avatar-wrapper reveal">
-    <div class="avatar-glow"></div>
-    <div class="avatar">
-      <img src="avatar.jpg" alt="L'Expert IA" width="80" height="80" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;">
+  <!-- ════ AI TIPS TICKER ════ -->
+  <div class="ticker-wrap">
+    <div class="ticker-track" id="tickerTrack">
+      <span class="ticker-item">ChatGPT + Canva + Notion = un business complet lancé en 48h.</span>
+      <span class="ticker-item">Un seul agent IA bien configuré remplace 3h de travail répétitif par jour.</span>
+      <span class="ticker-item">Les freelances IA facturent en moyenne 2x plus que les freelances classiques.</span>
+      <span class="ticker-item">85% des entreprises du CAC 40 intègrent l'IA d'ici 2027. Positionne-toi maintenant.</span>
+      <span class="ticker-item">Un prompt bien écrit sur ChatGPT peut générer un service à 300€ en moins d'1h.</span>
+      <span class="ticker-item">Les agents IA travaillent 24h/24 — toi tu encaisses pendant que tu dors.</span>
+      <span class="ticker-item">La niche la plus rentable en 2026 : vendre de l'automatisation IA aux PME françaises.</span>
+      <span class="ticker-item">ChatGPT + Make + Stripe = un business digital qui tourne seul.</span>
+      <!-- duplicate for seamless loop -->
+      <span class="ticker-item">ChatGPT + Canva + Notion = un business complet lancé en 48h.</span>
+      <span class="ticker-item">Un seul agent IA bien configuré remplace 3h de travail répétitif par jour.</span>
+      <span class="ticker-item">Les freelances IA facturent en moyenne 2x plus que les freelances classiques.</span>
+      <span class="ticker-item">85% des entreprises du CAC 40 intègrent l'IA d'ici 2027. Positionne-toi maintenant.</span>
+      <span class="ticker-item">Un prompt bien écrit sur ChatGPT peut générer un service à 300€ en moins d'1h.</span>
+      <span class="ticker-item">Les agents IA travaillent 24h/24 — toi tu encaisses pendant que tu dors.</span>
+      <span class="ticker-item">La niche la plus rentable en 2026 : vendre de l'automatisation IA aux PME françaises.</span>
+      <span class="ticker-item">ChatGPT + Make + Stripe = un business digital qui tourne seul.</span>
     </div>
   </div>
 
-  <div class="identity reveal">
-    <h1 class="name">L'Expert IA</h1>
-    <p class="tagline">Monétise l'intelligence artificielle.<br>Avant tout le monde.</p>
-    <div class="scramble-wrap">
-      <span class="scramble" id="scrambleEl"></span>
+  <!-- ════ NAV ════ -->
+  <nav>
+    <div class="logo">Académie Experts IA</div>
+    <div class="nav-links">
+      <a href="#programme" class="hide-mobile">Programme</a>
+      <a href="#communaute" class="hide-mobile">Communauté</a>
+      <a href="#faq" class="hide-mobile">FAQ</a>
+      <a href="https://lexpert-ia-private.systeme.io/20c995e1" class="nav-cta">Rejoindre — 297€</a>
+    </div>
+  </nav>
+
+  <!-- ════ HERO ════ -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-profile">
+        <img src="https://raw.githubusercontent.com/lexpert-ia/lexpertIA-Links/main/avatar.jpg"
+             alt="L'Expert IA"
+             class="hero-avatar"
+             onerror="this.style.display='none'">
+        <div class="hero-profile-info">
+          <div class="hero-profile-name">L'Expert IA</div>
+          <div class="hero-profile-sub">Monétise l'intelligence artificielle. Avant tout le monde.</div>
+        </div>
+      </div>
+
+      <div class="hero-badge">&#127775; La 1ère formation IA de monétisation francophone</div>
+
+      <h1>Maîtrisez l'IA.<br><span class="gold">Monétisez votre expertise.</span></h1>
+      <p class="hero-sub">Formation complète, outils premium, agent IA de trading prédictif et communauté privée. Tout ce qu'il faut pour transformer l'intelligence artificielle en revenus réels.</p>
+
+      <div class="hero-cta-group">
+        <a href="https://lexpert-ia-private.systeme.io/20c995e1" class="btn btn-gold" style="font-size:1.05rem; padding: 1.1rem 2.8rem;">
+          Accéder à l'Académie — 297&euro;
+        </a>
+        <a href="#programme" class="btn btn-ghost">Voir le programme &darr;</a>
+        <p class="hero-note">Paiement unique &middot; Accès à vie &middot; Garantie 30 jours</p>
+      </div>
+
+      <div class="hero-social">
+        <a href="https://t.me/lexpertIA" target="_blank" rel="noopener">
+          ✈️ Telegram gratuit
+        </a>
+        <a href="https://m.youtube.com/@AIGlobalFilms26" target="_blank" rel="noopener">
+          ▶️ YouTube
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ PROGRAMME ════ -->
+  <section id="programme">
+    <div class="container fade-up">
+      <div class="section-label">Ce qui est inclus</div>
+      <h2>Un programme complet. Zéro superflu.</h2>
+      <p class="section-desc">Chaque module vous amène du point A au point B le plus directement possible.</p>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <span class="feature-emoji">🎨</span>
+          <h3>Monétisation IA</h3>
+          <p>Créez votre identité en ligne, construisez un branding percutant et maîtrisez les outils IA qui génèrent des revenus.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-emoji">🚀</span>
+          <h3>Growth TikTok</h3>
+          <p>Stratégies éprouvées pour accélérer votre croissance TikTok grâce aux dernières avancées en IA.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-emoji">▶️</span>
+          <h3>YouTube Autopilot</h3>
+          <p>Créez des chaînes YouTube qui tournent toutes seules avec du contenu généré et optimisé par IA.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-emoji">📊</span>
+          <div class="feature-tag">Exclusif</div>
+          <h3>Trading IA & NexusOracle</h3>
+          <p>Accès à NexusOracle AI, agent semi-autonome pour les marchés prédictifs Polymarket. Analyse, prédit, décide.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-emoji">💬</span>
+          <h3>Communauté Privée Telegram</h3>
+          <p>Groupe Telegram avec alertes en avance, sorties exclusives, networking et entraide entre membres actifs.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-emoji">📚</span>
+          <h3>Templates & Automatisations</h3>
+          <p>Prompts optimisés, scripts d'automatisation et outils prêts à l'emploi dès le premier jour.</p>
+        </div>
+      </div>
+
+      <div class="lifetime-card">
+        <span style="font-size: 1.35rem;">♾</span>
+        <div>
+          <h3>Mises à jour à vie</h3>
+          <p>Accès permanent à toutes les futures formations et outils ajoutés à l'Académie.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ════ WHAT YOU GET ════ -->
+  <section>
+    <div class="container section-center fade-up">
+      <div class="section-label">En pratique</div>
+      <h2>Ce que vous recevez</h2>
+      <p class="section-desc">Pas de promesses en l'air. Voici concrètement ce qui vous attend après inscription.</p>
+
+      <div class="facts-grid">
+        <div class="fact-item">
+          <div class="fact-icon">⚡</div>
+          <div class="fact-title">Accès immédiat</div>
+          <div class="fact-desc">Tout disponible dès votre paiement confirmé</div>
+        </div>
+        <div class="fact-item">
+          <div class="fact-icon">🔄</div>
+          <div class="fact-title">Mises à jour régulières</div>
+          <div class="fact-desc">Contenu enrichi chaque semaine</div>
+        </div>
+        <div class="fact-item">
+          <div class="fact-icon">💬</div>
+          <div class="fact-title">Support 7j/7</div>
+          <div class="fact-desc">Assistance directe via Telegram</div>
+        </div>
+        <div class="fact-item">
+          <div class="fact-icon">🔒</div>
+          <div class="fact-title">Accès à vie</div>
+          <div class="fact-desc">Aucun abonnement, aucun frais caché</div>
+        </div>
+        <div class="fact-item">
+          <div class="fact-icon">🛠️</div>
+          <div class="fact-title">Outils inclus</div>
+          <div class="fact-desc">Templates, prompts et scripts fournis</div>
+        </div>
+        <div class="fact-item">
+          <div class="fact-icon">🛡️</div>
+          <div class="fact-title">Garantie 30 jours</div>
+          <div class="fact-desc">Remboursement intégral, sans condition</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ════ BEFORE / AFTER ════ -->
+  <section>
+    <div class="container section-center fade-up">
+      <div class="section-label">La différence</div>
+      <h2>Avant vs. après</h2>
+      <p class="section-desc">Ce qui change quand vous avez les bons outils et les bonnes stratégies.</p>
+
+      <div class="comparison-grid">
+        <div class="comparison-col before">
+          <div class="comparison-header">Sans l'Académie</div>
+          <div class="comparison-item"><span>•</span><span>Stratégies testées au hasard</span></div>
+          <div class="comparison-item"><span>•</span><span>Contenu qui stagne sans audience</span></div>
+          <div class="comparison-item"><span>•</span><span>Des heures perdues sans automatisation</span></div>
+          <div class="comparison-item"><span>•</span><span>Pas d'accès aux outils IA avancés</span></div>
+          <div class="comparison-item"><span>•</span><span>Isolation, pas de réseau</span></div>
+        </div>
+        <div class="comparison-col after">
+          <div class="comparison-header">Avec l'Académie</div>
+          <div class="comparison-item"><span>✓</span><span>Un plan d'action clair, étape par étape</span></div>
+          <div class="comparison-item"><span>✓</span><span>Croissance rapide sur TikTok et YouTube</span></div>
+          <div class="comparison-item"><span>✓</span><span>Chaînes en autopilote grâce à l'IA</span></div>
+          <div class="comparison-item"><span>✓</span><span>Agent IA NexusOracle pour le trading</span></div>
+          <div class="comparison-item"><span>✓</span><span>Communauté active et entraide</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ════ COMMUNAUTÉ & LIENS ════ -->
+  <section class="social-section" id="communaute">
+    <div class="container fade-up">
+      <div class="section-label">Rejoignez-nous</div>
+      <h2>La communauté L'Expert IA</h2>
+      <p class="section-desc">Contenu gratuit sur YouTube, alertes et discussions sur Telegram. Commencez maintenant, sans rien payer.</p>
+
+      <div class="social-grid">
+        <a href="https://t.me/lexpertIA" target="_blank" rel="noopener" class="social-card">
+          <div class="social-card-icon telegram">✈️</div>
+          <div class="social-card-info">
+            <h4>Telegram — Accès gratuit</h4>
+            <p>Alertes, conseils IA & communauté</p>
+          </div>
+          <span class="social-card-arrow">→</span>
+        </a>
+        <a href="https://m.youtube.com/@AIGlobalFilms26" target="_blank" rel="noopener" class="social-card">
+          <div class="social-card-icon youtube">▶️</div>
+          <div class="social-card-info">
+            <h4>YouTube — Tutos & Stratégies</h4>
+            <p>Vidéos gratuites chaque semaine</p>
+          </div>
+          <span class="social-card-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ════ EMAIL CAPTURE ════ -->
+  <section class="email-section">
+    <div class="container section-center fade-up">
+      <div class="section-label">Restez informé</div>
+      <h2>Recevez nos stratégies IA gratuitement</h2>
+
+      <div class="email-card">
+        <h3>🎁 Accès gratuit à nos ressources</h3>
+        <p>Laissez votre email et recevez immédiatement nos meilleures stratégies IA, prompts et conseils pour monétiser en 2026.</p>
+
+        <form class="email-form" id="emailForm" onsubmit="submitEmail(event)">
+          <input
+            type="email"
+            class="email-input"
+            id="emailInput"
+            placeholder="votre@email.com"
+            required
+            autocomplete="email"
+          >
+          <button type="submit" class="email-btn">Recevoir →</button>
+        </form>
+
+        <div class="email-success" id="emailSuccess">
+          ✅ Parfait ! Vérifiez votre boîte mail.
+        </div>
+
+        <div class="email-perks">
+          <span class="email-perk">Stratégies exclusives</span>
+          <span class="email-perk">Zéro spam</span>
+          <span class="email-perk">Désinscription facile</span>
+        </div>
+
+        <p class="email-legal">En soumettant, vous acceptez de recevoir des emails de L'Expert IA.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ════ PRICING ════ -->
+  <section id="pricing">
+    <div class="container section-center fade-up">
+      <div class="section-label">Tarif</div>
+      <h2>Un investissement. Une fois.</h2>
+      <p class="section-desc">Aucun abonnement. Aucun surprise. Un paiement et c'est à vous pour toujours.</p>
+
+      <div class="pricing-card">
+        <div class="pricing-name">Accès complet</div>
+        <div class="pricing-title">Académie Experts IA</div>
+        <div class="pricing-price"><span class="currency">&euro;</span>297</div>
+        <div class="pricing-note">Paiement unique &middot; Accès à vie &middot; Mises à jour incluses</div>
+
+        <div class="pricing-list">
+          <div class="pricing-item"><span class="check">✓</span><span>Formation complète Monétisation IA</span></div>
+          <div class="pricing-item"><span class="check">✓</span><span>Module Growth TikTok avec IA</span></div>
+          <div class="pricing-item"><span class="check">✓</span><span>Module YouTube Autopilot</span></div>
+          <div class="pricing-item"><span class="check">✓</span><span>Agent NexusOracle AI (Polymarket)</span></div>
+          <div class="pricing-item"><span class="check">✓</span><span>Communauté Telegram Privée</span></div>
+          <div class="pricing-item"><span class="check">✓</span><span>Templates, prompts & automatisations</span></div>
+          <div class="pricing-item"><span class="check">✓</span><span>Mises à jour à vie</span></div>
+        </div>
+
+        <div class="pricing-cta">
+          <a href="https://lexpert-ia-private.systeme.io/20c995e1" class="btn btn-gold" style="width: 100%; font-size: 1rem;">
+            Rejoindre l'Académie — 297€
+          </a>
+          <div class="guarantee-inline">🛡️ Garantie satisfait ou remboursé 30 jours</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ════ FAQ ════ -->
+  <section id="faq">
+    <div class="container section-center fade-up">
+      <div class="section-label">Questions fréquentes</div>
+      <h2>Tout ce que vous devez savoir</h2>
+      <p class="section-desc">Si votre question n'est pas ici, écrivez-nous directement.</p>
+
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Faut-il des compétences techniques ?</span>
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Non. Chaque module est conçu pour être accessible, avec des explications étape par étape, des vidéos et des templates prêts à l'emploi. Que vous soyez débutant ou avancé, vous y trouverez votre compte.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Comment fonctionne NexusOracle AI ?</span>
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>NexusOracle est un agent IA semi-autonome pour les marchés prédictifs Polymarket. Il analyse les événements réels, apprend de ses décisions passées et choisit ses entrées de manière réfléchie. Vous gardez le contrôle tout en bénéficiant de la puissance de l'IA.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>L'accès est-il vraiment à vie ?</span>
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Oui. Un paiement unique de 297€, aucun abonnement. Vous accédez à tout le contenu actuel et à toutes les futures mises à jour et nouvelles formations ajoutées à l'Académie.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Comment fonctionne la garantie 30 jours ?</span>
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Si dans les 30 jours suivant votre achat vous estimez que l'Académie ne vous convient pas, envoyez-nous un email à pipidersa@gmail.com et nous vous remboursons intégralement. Aucune question posée.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Quand est-ce que je reçois mes accès ?</span>
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Immédiatement après votre paiement. Vous recevez un email avec vos accès et une invitation pour rejoindre la communauté Telegram privée.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Est-ce différent d'une formation classique ?</span>
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Oui. L'Académie combine formation pratique, outils IA prêts à l'emploi, agent de trading prédictif et communauté active. Pas de théorie inutile — uniquement ce qui rapporte en 2026.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ════ GUARANTEE ════ -->
+  <section>
+    <div class="container fade-up">
+      <div class="guarantee-card">
+        <div class="guarantee-shield">🛡️</div>
+        <h3>Garantie 30 jours — Satisfait ou remboursé</h3>
+        <p>Testez l'Académie sans risque. Si elle ne vous convient pas dans les 30 jours suivant votre achat, nous vous remboursons intégralement. Sans condition, sans question.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ FINAL CTA ════ -->
+  <section class="final-cta">
+    <div class="container fade-up">
+      <h2>Prêt à prendre de l'avance ?</h2>
+      <p>L'IA avance vite. Rejoignez ceux qui en profitent maintenant.</p>
+      <a href="https://lexpert-ia-private.systeme.io/20c995e1" class="btn btn-gold" style="font-size: 1.05rem; padding: 1.1rem 2.8rem;">
+        Accéder à l'Académie — 297€
+      </a>
+      <p style="margin-top: 1rem; font-size: 0.78rem; color: var(--text-dim);">
+        Paiement sécurisé · Accès immédiat · Garantie 30 jours
+      </p>
+    </div>
+  </section>
+
+  <!-- ════ CONTACT ════ -->
+  <div class="contact-section">
+    <div class="container">
+      <p style="color: var(--text-muted); font-size: 0.85rem;">
+        Une question ? <a href="mailto:pipidersa@gmail.com" class="contact-link">pipidersa@gmail.com</a>
+      </p>
     </div>
   </div>
 
-  <!-- TIP CARD — GAME CHANGER -->
-  <div class="tip-card reveal" id="tipCard">
-    <div class="tip-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 12 18.469a3.374 3.374 0 0 0-1.988-1.029l-.548-.547z"/></svg>
-    </div>
-    <div class="tip-body">
-      <span class="tip-label">Astuce IA du jour</span>
-      <span class="tip-text" id="tipText">ChatGPT + Canva + Notion = un business complet lancé en 48h.</span>
-    </div>
+  <!-- ════ FOOTER ════ -->
+  <footer>
+    &copy; 2026 Académie Experts IA &mdash; Tous droits réservés &nbsp;·&nbsp;
+    <a href="https://t.me/lexpertIA" target="_blank">Telegram</a> &nbsp;·&nbsp;
+    <a href="https://m.youtube.com/@AIGlobalFilms26" target="_blank">YouTube</a> &nbsp;·&nbsp;
+    <a href="mailto:pipidersa@gmail.com">Contact</a>
+  </footer>
+
+  <!-- ════ STICKY BAR ════ -->
+  <div class="sticky-bar" id="stickyBar">
+    <span class="sticky-label hide-mobile">Académie Experts IA</span>
+    <span class="sticky-price">297€</span>
+    <a href="https://lexpert-ia-private.systeme.io/20c995e1" class="btn btn-gold btn-sm">Rejoindre →</a>
+    <span class="guarantee-inline hide-mobile">🛡️ 30j garanti</span>
   </div>
 
-  <!-- COUNTDOWN — weekly cycle, closes Sunday 23:59 -->
-  <div class="countdown-bar reveal" id="countdownBar">
-    <span class="countdown-icon">&#9200;</span>
-    <span class="countdown-label">Inscriptions privées ferment dans</span>
-    <span class="countdown-time" id="countdownTime">--:--:--</span>
-  </div>
-
-  <div class="links reveal">
-
-    <!-- INLINE EMAIL CAPTURE -->
-    <p class="email-gate-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Entre ton email pour débloquer l'accès</p>
-    <form class="inline-email-form" id="inlineEmailForm">
-      <input class="modal-input" type="email" id="inlineEmail" placeholder="Ton meilleur email" required autocomplete="email">
-      <button class="inline-email-btn" type="submit">Débloquer</button>
-    </form>
-
-    <!-- ACCES PRIVE — HERO CTA -->
-    <button class="link-btn premium locked" id="premiumBtn" type="button" data-url="https://lexpert-ia-private.systeme.io/20c995e1">
-      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-      <span>Accès Privé — 47€/mois</span>
-      <span class="premium-badge">Populaire</span>
-    </button>
-    <p class="premium-hint">Annulable à tout moment — Satisfait ou remboursé 7j</p>
-    <p class="browser-hint">&#128161; Ouvre dans ton navigateur pour accéder</p>
-
-    <!-- ACCES GRATUIT -->
-    <button class="link-btn telegram locked" id="telegramBtn" type="button" data-url="https://t.me/lexpertIA">
-      <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-      <span>Accès gratuit — Telegram</span>
-    </button>
-    <p class="browser-hint">&#128161; Ouvre dans ton navigateur pour accéder</p>
-
-    <!-- YOUTUBE -->
-    <a class="link-btn youtube" href="https://m.youtube.com/@AIGlobalFilms26" target="_blank" rel="noopener">
-      <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-      <span>YouTube</span>
-      <span class="yt-sub">Tutos & Stratégies</span>
-    </a>
-
-    <!-- COMING SOON -->
-    <div class="link-btn soon">
-      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-      <span>Site web</span>
-      <span class="badge">Coming soon</span>
-    </div>
-    <p class="soon-sub">The future is being built…</p>
-  </div>
-
-  <p class="footer reveal">© 2026 LEXPERTIA-LINKS</p>
-</div>
-
-
-<!-- STICKY MOBILE CTA -->
-<div class="sticky-cta" id="stickyCta">
-  <div class="sticky-cta-text">
-    <span class="sticky-cta-title">Rejoins la communauté</span>
-    <span class="sticky-cta-sub">Stratégies IA gratuites chaque semaine</span>
-  </div>
-  <button class="sticky-cta-btn" id="stickyBtn">Rejoindre</button>
-</div>
-
-<div class="confetti-container" id="confettiContainer"></div>
-
-<script>
-(function(){
-  /* ---- IN-APP BROWSER DETECTION ---- */
-  if(/Instagram|TikTok|musical_ly|BytedanceWebview|FBAN|FBAV|Snapchat|Line\//i.test(navigator.userAgent)){
-    document.getElementById('inappBanner').classList.add('show');
-    document.body.classList.add('has-banner');
-  }
-
-  var FORMSUBMIT_URL='https://formsubmit.co/ajax/08ec602de2450203d517fd45deec4907';
-  var CAPTURE_URL='https://pipidersa.systeme.io/35bd1645';
-
-  /* ---- AURORA WEBGL BACKGROUND ---- */
-  var canvas=document.getElementById('bgCanvas');
-  var gl=canvas.getContext('webgl')||canvas.getContext('experimental-webgl');
-  var auroraOk=!!gl;
-  if(auroraOk){
-    var vs='attribute vec2 p;void main(){gl_Position=vec4(p,0,1);}';
-    var fs='precision mediump float;\nuniform float t;\nuniform vec2 r;\n\nvec3 hash(vec3 p){p=vec3(dot(p,vec3(127.1,311.7,74.7)),dot(p,vec3(269.5,183.3,246.1)),dot(p,vec3(113.5,271.9,124.6)));return-1.0+2.0*fract(sin(p)*43758.5453);}\n\nfloat noise(vec3 p){vec3 i=floor(p);vec3 f=fract(p);vec3 u=f*f*(3.0-2.0*f);return mix(mix(mix(dot(hash(i),f),dot(hash(i+vec3(1,0,0)),f-vec3(1,0,0)),u.x),mix(dot(hash(i+vec3(0,1,0)),f-vec3(0,1,0)),dot(hash(i+vec3(1,1,0)),f-vec3(1,1,0)),u.x),u.y),mix(mix(dot(hash(i+vec3(0,0,1)),f-vec3(0,0,1)),dot(hash(i+vec3(1,0,1)),f-vec3(1,0,1)),u.x),mix(dot(hash(i+vec3(0,1,1)),f-vec3(0,1,1)),dot(hash(i+vec3(1,1,1)),f-vec3(1,1,1)),u.x),u.y),u.z);}\n\nfloat fbm(vec3 p){float v=0.0;float a=0.5;for(int i=0;i<5;i++){v+=a*noise(p);p*=2.0;a*=0.5;}return v;}\n\nvoid main(){\nvec2 uv=(gl_FragCoord.xy-0.5*r)/min(r.x,r.y);\nfloat n1=fbm(vec3(uv*1.8+t*0.08,t*0.05));\nfloat n2=fbm(vec3(uv*2.2+n1*1.2+t*0.06,t*0.04+10.0));\nfloat n3=fbm(vec3(uv*1.5+n2*0.8,t*0.07+20.0));\nvec3 c1=vec3(0.067,0.227,0.494);\nvec3 c2=vec3(0.392,0.086,0.855);\nvec3 c3=vec3(0.059,0.780,0.635);\nvec3 c4=vec3(0.165,0.671,0.933);\nvec3 base=vec3(0.039,0.039,0.039);\nfloat m=n3*0.5+0.5;\nvec3 col=base;\ncol=mix(col,c1,smoothstep(0.2,0.5,m)*0.35);\ncol=mix(col,c2,smoothstep(0.35,0.65,m)*0.25);\ncol=mix(col,c3,smoothstep(0.5,0.8,m)*0.2);\ncol=mix(col,c4,smoothstep(0.6,0.9,m)*0.15);\ncol*=0.55+0.45*smoothstep(-0.5,0.8,n1);\ngl_FragColor=vec4(col,1.0);\n}';
-    function mkS(type,src){var s=gl.createShader(type);gl.shaderSource(s,src);gl.compileShader(s);return s}
-    var prog=gl.createProgram();
-    gl.attachShader(prog,mkS(gl.VERTEX_SHADER,vs));
-    gl.attachShader(prog,mkS(gl.FRAGMENT_SHADER,fs));
-    gl.linkProgram(prog);gl.useProgram(prog);
-    var buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);
-    gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
-    var pLoc=gl.getAttribLocation(prog,'p');gl.enableVertexAttribArray(pLoc);gl.vertexAttribPointer(pLoc,2,gl.FLOAT,false,0,0);
-    var tLoc=gl.getUniformLocation(prog,'t'),rLoc=gl.getUniformLocation(prog,'r');
-    var dpr=Math.min(window.devicePixelRatio||1,2);
-    function resizeGL(){var w=window.innerWidth,h=window.innerHeight;canvas.width=w*dpr;canvas.height=h*dpr;canvas.style.width=w+'px';canvas.style.height=h+'px';gl.viewport(0,0,canvas.width,canvas.height)}
-    resizeGL();window.addEventListener('resize',resizeGL);
-    var startT=performance.now();
-    function drawAurora(){var elapsed=(performance.now()-startT)/1000;gl.uniform1f(tLoc,elapsed);gl.uniform2f(rLoc,canvas.width,canvas.height);gl.drawArrays(gl.TRIANGLE_STRIP,0,4);requestAnimationFrame(drawAurora)}
-    drawAurora();
-  }
-
-  /* ---- CURSOR GLOW (desktop) ---- */
-  var cursorGlow=document.getElementById('cursorGlow');
-  if(window.innerWidth>768){
-    document.addEventListener('mousemove',function(e){cursorGlow.style.opacity='1';cursorGlow.style.left=e.clientX+'px';cursorGlow.style.top=e.clientY+'px'});
-    document.addEventListener('mouseleave',function(){cursorGlow.style.opacity='0'});
-  }
-
-  /* ---- REVEAL ---- */
-  var revEls=document.querySelectorAll('.reveal');
-  for(var ri=0;ri<revEls.length;ri++)(function(el,i){setTimeout(function(){el.classList.add('visible')},80+i*90)})(revEls[ri],ri);
-
-  /* ---- TEXT SCRAMBLE (soulwire-inspired) ---- */
-  var scrambleEl=document.getElementById('scrambleEl');
-  var scrambleTexts=['Agents IA \u00b7 Automatisation \u00b7 Mon\u00e9tisation','Strat\u00e9gies rentables r\u00e9currentes','L\'IA ne remplacera pas tout le monde. Juste ceux qui attendent.'];
-  var scrambleChars='!<>-_\\/[]{}=+*^?#$@%&~';
-  var scrambleIdx=0;
-
-  function TextScramble(el){
-    this.el=el;this.queue=[];this.frame=0;this.running=false;
-  }
-  TextScramble.prototype.setText=function(newText){
-    var self=this;
-    var oldText=this.el.textContent;
-    var length=Math.max(oldText.length,newText.length);
-    this.queue=[];
-    for(var i=0;i<length;i++){
-      var from=oldText[i]||'';
-      var to=newText[i]||'';
-      var start=Math.floor(Math.random()*20);
-      var end=start+Math.floor(Math.random()*20);
-      this.queue.push({from:from,to:to,start:start,end:end});
+  <!-- ════ SCRIPTS ════ -->
+  <script>
+    /* ── Countdown to next Sunday 23:59 (weekly urgency) ── */
+    function updateTimer() {
+      const now = new Date();
+      const nextSunday = new Date(now);
+      const dayOfWeek = now.getDay();
+      const daysUntilSunday = (7 - dayOfWeek) % 7 || 7;
+      nextSunday.setDate(now.getDate() + daysUntilSunday);
+      nextSunday.setHours(23, 59, 0, 0);
+      const diff = nextSunday - now;
+      if (diff <= 0) { updateTimer(); return; }
+      const d = Math.floor(diff / 86400000);
+      const h = String(Math.floor((diff % 86400000) / 3600000)).padStart(2, '0');
+      const m = String(Math.floor((diff % 3600000) / 60000)).padStart(2, '0');
+      const s = String(Math.floor((diff % 60000) / 1000)).padStart(2, '0');
+      document.getElementById('timer').textContent = (d > 0 ? d + 'j ' : '') + h + ':' + m + ':' + s;
     }
-    this.frame=0;
-    if(!this.running){this.running=true;this._update();}
-  };
-  TextScramble.prototype._update=function(){
-    var self=this;
-    var output='';var complete=0;
-    for(var i=0;i<this.queue.length;i++){
-      var q=this.queue[i];
-      if(this.frame>=q.end){complete++;output+=q.to;}
-      else if(this.frame>=q.start){
-        var c=scrambleChars[Math.floor(Math.random()*scrambleChars.length)];
-        output+='<span class="char-glyph">'+c+'</span>';
-      } else {output+=q.from;}
+    updateTimer();
+    setInterval(updateTimer, 1000);
+
+    /* ── Sticky bar ── */
+    const stickyBar = document.getElementById('stickyBar');
+    const heroEl = document.querySelector('.hero');
+    new IntersectionObserver(([entry]) => {
+      stickyBar.classList.toggle('visible', !entry.isIntersecting);
+    }, { threshold: 0 }).observe(heroEl);
+
+    /* ── Fade-in ── */
+    const fadeObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.fade-up').forEach(el => fadeObs.observe(el));
+
+    /* ── FAQ accordion ── */
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const wasOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+        if (!wasOpen) item.classList.add('open');
+      });
+    });
+
+    /* ── Email capture via FormSubmit ── */
+    async function submitEmail(e) {
+      e.preventDefault();
+      const email = document.getElementById('emailInput').value.trim();
+      if (!email) return;
+
+      const btn = e.target.querySelector('.email-btn');
+      btn.textContent = '...';
+      btn.disabled = true;
+
+      try {
+        await fetch('https://formsubmit.co/ajax/08ec602de2450203d517fd45deec4907', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({ email, source: 'landing_page_academie', _subject: 'Nouveau lead Académie Experts IA' })
+        });
+      } catch (_) { /* silent fail — still show success */ }
+
+      /* Store locally as backup */
+      const stored = JSON.parse(localStorage.getItem('lexpertia_emails') || '[]');
+      stored.push({ email, ts: Date.now() });
+      localStorage.setItem('lexpertia_emails', JSON.stringify(stored));
+
+      document.getElementById('emailForm').style.display = 'none';
+      const successEl = document.getElementById('emailSuccess');
+      successEl.style.display = 'flex';
+
+      /* GA event */
+      if (typeof gtag !== 'undefined') gtag('event', 'email_capture', { email });
     }
-    this.el.innerHTML=output;
-    if(complete<this.queue.length){
-      this.frame++;requestAnimationFrame(function(){self._update();});
-    } else {this.running=false;}
-  };
-
-  var scrambler=new TextScramble(scrambleEl);
-  function nextScramble(){
-    scrambler.setText(scrambleTexts[scrambleIdx]);
-    scrambleIdx=(scrambleIdx+1)%scrambleTexts.length;
-    setTimeout(nextScramble,4000);
-  }
-  setTimeout(nextScramble,1000);
-
-  /* ---- TIP ROTATION ---- */
-  var tips=['ChatGPT + Canva + Notion = un business complet lanc\u00e9 en 48h.','Un seul agent IA bien configur\u00e9 remplace 3h de travail r\u00e9p\u00e9titif par jour.','Les freelances IA facturent en moyenne 2x plus que les freelances classiques.','85% des entreprises du CAC 40 int\u00e8grent l\'IA d\'ici 2027. Positionne-toi maintenant.','Automatise ta veille, ta cr\u00e9ation de contenu et ton acquisition avec 3 outils.','Un prompt bien \u00e9crit sur ChatGPT peut g\u00e9n\u00e9rer un service \u00e0 300\u20ac en moins d\'1h.','Les agents IA travaillent 24h/24 \u2014 toi tu encaisses pendant que tu dors.','La niche la plus rentable en 2026 : vendre de l\'automatisation IA aux PME fran\u00e7aises.','ChatGPT + Make + Stripe = un business digital qui tourne seul.','Les premiers qui ma\u00eetrisent les agents IA en France vont faire des millions. T\'es encore \u00e0 temps.'];
-  var tipI=0,tipEl=document.getElementById('tipText');
-  setInterval(function(){
-    tipEl.style.opacity='0';
-    setTimeout(function(){
-      tipI=(tipI+1)%tips.length;
-      tipEl.textContent=tips[tipI];
-      tipEl.style.opacity='1';
-    },300);
-  },6000);
-
-  /* ---- EMAIL STORAGE ---- */
-  function getEmails(){try{return JSON.parse(localStorage.getItem('lexpertia_emails')||'[]')}catch(e){return[]}}
-  function storeEmail(e){var em=getEmails();if(em.indexOf(e)===-1){em.push(e);localStorage.setItem('lexpertia_emails',JSON.stringify(em))}return em.length}
-
-  /* ---- EMAIL GATE + INLINE FORM ---- */
-  var inlineForm=document.getElementById('inlineEmailForm');
-  var inlineEmail=document.getElementById('inlineEmail');
-  var inlineBtn=inlineForm.querySelector('.inline-email-btn');
-  var premiumBtn=document.getElementById('premiumBtn');
-  var telegramBtn=document.getElementById('telegramBtn');
-  var gateLabel=document.querySelector('.email-gate-label');
-
-  function unlockButtons(){
-    premiumBtn.classList.remove('locked');
-    telegramBtn.classList.remove('locked');
-    inlineForm.classList.add('done');
-    if(gateLabel)gateLabel.style.display='none';
-  }
-
-  // If user already submitted email before, unlock immediately
-  var existingEmails=getEmails();
-  if(existingEmails.length>0){
-    unlockButtons();
-    inlineBtn.textContent='\u2713 D\u00e9bloqu\u00e9';
-    inlineEmail.value=existingEmails[existingEmails.length-1];
-  }
-
-  inlineForm.addEventListener('submit',function(e){
-    e.preventDefault();
-    var email=inlineEmail.value.trim();
-    if(!email)return;
-    inlineBtn.textContent='Envoi...';inlineBtn.disabled=true;
-    storeEmail(email);
-    console.log('[LEXPERTIA]',email);
-
-    // 1. Envoie à Formsubmit (backup Gmail)
-    fetch(FORMSUBMIT_URL,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({email:email,_subject:'Nouveau lead \u2014 '+email,_template:'table',source:'lexpert-ia',date:new Date().toISOString()})}).catch(function(){});
-
-    // 2. Envoie à Systeme.io via iframe caché (enregistre dans tes Contacts)
-    var iframe=document.createElement('iframe');
-    iframe.style.cssText='display:none';
-    iframe.src=CAPTURE_URL+'?email='+encodeURIComponent(email);
-    document.body.appendChild(iframe);
-    setTimeout(function(){iframe.remove()},5000);
-
-    // Débloque immédiatement
-    setTimeout(function(){
-      inlineBtn.textContent='\u2713 D\u00e9bloqu\u00e9 !';
-      inlineBtn.disabled=false;
-      unlockButtons();
-      fireConfetti();
-    },800);
-  });
-
-  /* ---- CONFETTI ---- */
-  function fireConfetti(){var c=document.getElementById('confettiContainer'),cols=['#2AABEE','#8b5cf6','#ec4899','#22c55e','#f59e0b','#fff'];for(var i=0;i<35;i++){var p=document.createElement('div');p.className='confetti-piece';p.style.left=Math.random()*100+'%';p.style.top=Math.random()*30+'%';p.style.background=cols[Math.floor(Math.random()*cols.length)];p.style.animationDelay=(Math.random()*.5)+'s';p.style.animationDuration=(1+Math.random())+'s';p.style.width=(4+Math.random()*7)+'px';p.style.height=(4+Math.random()*7)+'px';c.appendChild(p)}setTimeout(function(){c.innerHTML=''},3000)}
-
-  /* ---- STICKY MOBILE CTA ---- */
-  var sticky=document.getElementById('stickyCta');
-  var stickyShown=false;
-  var stickyBtn=document.getElementById('stickyBtn');
-  stickyBtn.addEventListener('click',function(){document.getElementById('inlineEmail').focus();document.getElementById('inlineEmail').scrollIntoView({behavior:'smooth',block:'center'})});
-  function checkSticky(){
-    if(window.innerWidth>768)return;
-    if(window.scrollY>200||document.documentElement.scrollTop>200){
-      if(!stickyShown){stickyShown=true;sticky.classList.add('show')}
-    }
-  }
-  window.addEventListener('scroll',checkSticky,{passive:true});
-  if(window.innerWidth<=768){setTimeout(function(){if(!stickyShown){stickyShown=true;sticky.classList.add('show')}},3000)}
-
-  /* ---- LINK BUTTONS ---- */
-  var PAYMENT_URL='https://lexpert-ia-private.systeme.io/20c995e1';
-  var premiumLabel=premiumBtn.querySelector('span:not(.premium-badge)');
-  var premiumOrigText=premiumLabel.textContent;
-
-  premiumBtn.addEventListener('click',function(){
-    if(this.classList.contains('locked')){inlineEmail.focus();inlineEmail.scrollIntoView({behavior:'smooth',block:'center'});return}
-    // Try normal navigation first
-    var w=window.open(PAYMENT_URL,'_blank');
-    if(!w||w.closed){
-      // Blocked (TikTok/in-app) — copy to clipboard
-      copyToClip(PAYMENT_URL);
-      premiumLabel.textContent='\u2713 Lien copi\u00e9 ! Colle dans Safari';
-      this.style.background='linear-gradient(135deg,rgba(34,197,94,.15),rgba(34,197,94,.08))';
-      this.style.borderColor='rgba(34,197,94,.4)';
-      var btn=this;
-      setTimeout(function(){premiumLabel.textContent=premiumOrigText;btn.style.background='';btn.style.borderColor=''},4000);
-    }
-  });
-
-  telegramBtn.addEventListener('click',function(){
-    if(this.classList.contains('locked')){inlineEmail.focus();inlineEmail.scrollIntoView({behavior:'smooth',block:'center'});return}
-    window.location.href=this.getAttribute('data-url');
-  });
-
-  function copyToClip(text){
-    if(navigator.clipboard&&navigator.clipboard.writeText){
-      navigator.clipboard.writeText(text);
-    } else {
-      var ta=document.createElement('textarea');
-      ta.value=text;ta.style.cssText='position:fixed;opacity:0';
-      document.body.appendChild(ta);ta.select();
-      document.execCommand('copy');document.body.removeChild(ta);
-    }
-  }
-
-  /* ---- RIPPLE ---- */
-  document.querySelectorAll('.link-btn:not(.soon):not(.telegram)').forEach(function(btn){btn.addEventListener('click',function(e){ripple(e,this)})});
-  function ripple(e,el){var rect=el.getBoundingClientRect(),size=Math.max(rect.width,rect.height),r=document.createElement('span');r.className='ripple';r.style.width=r.style.height=size+'px';r.style.left=(e.clientX-rect.left-size/2)+'px';r.style.top=(e.clientY-rect.top-size/2)+'px';el.appendChild(r);r.addEventListener('animationend',function(){r.remove()})}
-
-  /* ---- COUNTDOWN (weekly — next Sunday 23:59) ---- */
-  var countdownEl=document.getElementById('countdownTime');
-  function getNextSunday(){
-    var now=new Date();
-    var day=now.getDay(); // 0=Sun
-    var daysUntil=day===0?0:7-day;
-    var end=new Date(now);
-    end.setDate(end.getDate()+daysUntil);
-    end.setHours(23,59,59,999);
-    if(end<=now){end.setDate(end.getDate()+7)}
-    return end;
-  }
-  var sundayEnd=getNextSunday();
-  function updateCountdown(){
-    var now=new Date();
-    var diff=sundayEnd-now;
-    if(diff<=0){sundayEnd=getNextSunday();diff=sundayEnd-now}
-    var d=Math.floor(diff/86400000);
-    var h=Math.floor((diff%86400000)/3600000);
-    var m=Math.floor((diff%3600000)/60000);
-    var s=Math.floor((diff%60000)/1000);
-    countdownEl.textContent=(d>0?d+'j ':'')+(h<10?'0':'')+h+':'+(m<10?'0':'')+m+':'+(s<10?'0':'')+s;
-  }
-  updateCountdown();setInterval(updateCountdown,1000);
-
-})();
-</script>
+  </script>
 
 </body>
 </html>
